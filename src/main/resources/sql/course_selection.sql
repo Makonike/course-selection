@@ -11,7 +11,7 @@
  Target Server Version : 50733
  File Encoding         : 65001
 
- Date: 09/09/2021 19:32:27
+ Date: 11/09/2021 16:06:40
 */
 
 SET NAMES utf8mb4;
@@ -97,7 +97,7 @@ CREATE TABLE `t_class`  (
 -- ----------------------------
 -- Records of t_class
 -- ----------------------------
-INSERT INTO `t_class` VALUES (1, '计科2班', 0, 0, '2021-09-09 19:19:08', 0);
+INSERT INTO `t_class` VALUES (1, '计科2班', 1, 1, '2021-09-10 16:26:18', 0);
 
 -- ----------------------------
 -- Table structure for t_course
@@ -107,11 +107,13 @@ CREATE TABLE `t_course`  (
   `course_id` int(11) NOT NULL AUTO_INCREMENT,
   `course_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `course_type` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '课程类型:人文社科/自然科学',
+  `teacher_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `course_time` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '上课时间段',
   `course_position` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `course_credit` float(2, 2) NOT NULL DEFAULT 0.00 COMMENT '学分',
   `course_hour` int(11) NOT NULL DEFAULT 0 COMMENT '学时',
   `create_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `course_desc` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `removed` tinyint(2) NOT NULL DEFAULT 0 COMMENT '是否删除 0-否 1-是',
   PRIMARY KEY (`course_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
@@ -149,11 +151,12 @@ CREATE TABLE `t_grade`  (
   `grade_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `grade_desc` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`grade_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_grade
 -- ----------------------------
+INSERT INTO `t_grade` VALUES (1, '20', NULL);
 
 -- ----------------------------
 -- Table structure for t_institute
@@ -164,11 +167,12 @@ CREATE TABLE `t_institute`  (
   `institute_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `institute_desc` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`institute_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_institute
 -- ----------------------------
+INSERT INTO `t_institute` VALUES (1, '计算机', NULL);
 
 -- ----------------------------
 -- Table structure for t_student
@@ -176,17 +180,18 @@ CREATE TABLE `t_institute`  (
 DROP TABLE IF EXISTS `t_student`;
 CREATE TABLE `t_student`  (
   `student_id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_no` int(20) NOT NULL COMMENT '学号',
+  `student_no` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '学号',
   `student_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `sutdent_sex` tinyint(2) NOT NULL COMMENT '学生性别 0-男 1-女',
+  `student_sex` tinyint(2) NOT NULL COMMENT '学生性别 0-男 1-女',
   `studnet_class_id` int(11) NOT NULL COMMENT '班级',
   `selected_course_count` int(11) NOT NULL DEFAULT 0 COMMENT '已选课程数',
   `removed` tinyint(2) NOT NULL DEFAULT 0 COMMENT '是否删除 0-否 1-是',
   PRIMARY KEY (`student_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_student
 -- ----------------------------
+INSERT INTO `t_student` VALUES (1, '3120005100', 'wmm', 0, 1, 0, 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
