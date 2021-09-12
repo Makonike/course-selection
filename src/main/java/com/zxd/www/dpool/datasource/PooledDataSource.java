@@ -7,12 +7,15 @@ import com.zxd.www.dpool.exception.PoolException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.concurrent.*;
 
 /**
@@ -26,13 +29,18 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
 
     private List<IPooledConnection> pool = null;
 
+    public PooledDataSource() {
+        init();
+    }
+
     /**
      * 归还连接
      * @param connection 连接
      */
     @Override
-    public void returnConnection(IPooledConnection connection) {
+    public synchronized void returnConnection(IPooledConnection connection) {
         connection.setBusy(false);
+        this.notifyAll();
         logger.debug("--- 归还连接: " + connection +  " ---");
     }
 
@@ -40,11 +48,17 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
      * 一系列初始化操作
      */
     @Override
-    public synchronized void init() {
+    public void init() {
         try {
-            // 暂时没接触其他驱动，所以这里写死了，用该驱动 com.mysql.cj.jdbc.Driver
-            Class.forName(DataSourceConstant.DRIVER_CLASS);
-        } catch (ClassNotFoundException e) {
+            // 读取配置文件
+            Properties properties = new Properties();
+            InputStream in = PooledDataSource.class.getClassLoader().getResourceAsStream("db.properties");
+            properties.load(in);
+            Class.forName(properties.getProperty(DataSourceConstant.DRIVER_CLASS));
+            setJdbcUrl(properties.getProperty(DataSourceConstant.JDBC_URL));
+            setUsername(properties.getProperty(DataSourceConstant.USER_NAME));
+            setPassword(properties.getProperty(DataSourceConstant.PASSWORD));
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
         // 初始化数据库连接池
@@ -78,7 +92,8 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
                     return optional.get();
                 }
                 try {
-                    TimeUnit.MILLISECONDS.sleep(1000);
+                    this.wait();
+//                    TimeUnit.MILLISECONDS.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                     throw new PoolException(e);
