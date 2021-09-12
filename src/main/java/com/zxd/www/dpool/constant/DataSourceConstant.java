@@ -9,7 +9,7 @@ public class DataSourceConstant {
     public DataSourceConstant() {
     }
 
-    public static final String DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
+    public static final String DRIVER_CLASS = "driver";
     public static final String JDBC_URL = "url";
     public static final String USER_NAME = "username";
     public static final String PASSWORD = "password";
