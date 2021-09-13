@@ -15,9 +15,9 @@ public class StudentDaoImpl extends BaseDao implements StudentDao {
     @Override
     public int insertStudent(Student student) {
         //language=sql
-        String sql = " insert into `t_student` " +
+        String sql = " INSERT INTO `t_student` " +
                 " (`student_no`, `student_name`, `student_sex` , `student_class_id`)" +
-                " values(?, ?, ?, ?)";
+                " VALUES(?, ?, ?, ?)";
         return update(sql, student.getStudentNo(), student.getStudentName(), student.getStudentSex()
         , student.getStudentClassId());
     }
@@ -25,11 +25,11 @@ public class StudentDaoImpl extends BaseDao implements StudentDao {
     @Override
     public int updateStudent(Student student) {
         //language=sql
-        String sql = " update `t_student` " +
-                " set `student_no` = ?, `student_name` = ?, `student_sex` = ? " +
+        String sql = " UPDATE `t_student` " +
+                " SET `student_no` = ?, `student_name` = ?, `student_sex` = ? " +
                 " , `student_class_id` = ?, `selected_course_count` = ? " +
-                " where `student_id` = ? " +
-                " and `removed` = 0 ";
+                " WHERE `student_id` = ? " +
+                " AND `removed` = 0 ";
         return update(sql, student.getStudentNo(), student.getStudentName(), student.getStudentSex()
         , student.getStudentClassId(), student.getSelectedCourseCount(), student.getStudentId());
     }
@@ -42,10 +42,10 @@ public class StudentDaoImpl extends BaseDao implements StudentDao {
     @Override
     public int deleteStudent(Integer studentId) {
         //language=sql
-        String sql = " update `t_student` " +
-                " set `removed` = 1 " +
-                " where `student_id` = ? " +
-                " and `removed` = 0 ";
+        String sql = " UPDATE `t_student` " +
+                " SET `removed` = 1 " +
+                " WHERE `student_id` = ? " +
+                " AND `removed` = 0 ";
         return update(sql, studentId);
     }
 
