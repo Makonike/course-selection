@@ -3,12 +3,16 @@ package com.zxd.www.po;
 import java.time.LocalDateTime;
 
 /**
+ * 管理员实体类
  * @author Makonike
  * @date 2021-09-10 11:08
  **/
 public class Admin {
 
     private Integer adminId;
+    /**
+     * 管理员姓名，也是用于登录的管理员账号
+     */
     private String adminName;
     private String adminSalt;
     private String adminPassword;

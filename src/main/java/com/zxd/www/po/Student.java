@@ -1,25 +1,36 @@
 package com.zxd.www.po;
 
 /**
- * 学生实体类
+ * 学生信息实体类
  * @author Makonike
  * @date 2021-09-10 10:59
  **/
 public class Student {
 
     private Integer studentId;
+    /**
+     * 与登录绑定的用户id
+     */
+    private Integer userId;
+    /**
+     * 学生学号
+     */
     private String studentNo;
     private String studentName;
     private Integer studentSex;
     private Integer studentClassId;
+    /**
+     * 已选课程数
+     */
     private Integer selectedCourseCount;
     private Integer removed;
 
     public Student() {
     }
 
-    public Student(Integer studentId, String studentNo, String studentName, Integer studentSex, Integer studentClassId, Integer selectedCourseCount, Integer removed) {
+    public Student(Integer studentId, Integer userId, String studentNo, String studentName, Integer studentSex, Integer studentClassId, Integer selectedCourseCount, Integer removed) {
         this.studentId = studentId;
+        this.userId = userId;
         this.studentNo = studentNo;
         this.studentName = studentName;
         this.studentSex = studentSex;
@@ -88,6 +99,7 @@ public class Student {
     public String toString() {
         return "Student{" +
                 "studentId=" + studentId +
+                ", userId=" + userId +
                 ", studentNo='" + studentNo + '\'' +
                 ", studentName='" + studentName + '\'' +
                 ", studentSex=" + studentSex +

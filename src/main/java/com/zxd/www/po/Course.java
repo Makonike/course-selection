@@ -3,20 +3,48 @@ package com.zxd.www.po;
 import java.util.Date;
 
 /**
+ * 课程实体类
  * @author Makonike
  * @date 2021-09-10 11:18
  **/
 public class Course {
 
     private Integer courseId;
+    /**
+     * 课程名称
+     */
     private String courseName;
+    /**
+     * 课程类型
+     */
     private String courseType;
+    /**
+     * 任课教师名称
+     */
     private String teacherName;
+    /**
+     * 上课时间段
+     */
     private String courseTime;
+    /**
+     * 上课地点
+     */
     private String coursePosition;
+    /**
+     * 学分
+     */
     private Float courseCredit;
+    /**
+     * 学时
+     */
     private Integer courseHour;
+    /**
+     * 开课时间
+     */
     private Date createTime;
+    /**
+     * 课程详情
+     */
     private String courseDesc;
     private Integer removed;
 

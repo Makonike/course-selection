@@ -3,6 +3,7 @@ package com.zxd.www.po;
 import java.util.Date;
 
 /**
+ * 班级实体类
  * @author Makonike
  * @date 2021-09-10 11:22
  **/
@@ -10,7 +11,13 @@ public class Class {
 
     private Integer classId;
     private String className;
+    /**
+     * 学院id
+     */
     private Integer instituteId;
+    /**
+     * 年级id
+     */
     private Integer gradeId;
     private Date createTime;
     private Integer removed;
