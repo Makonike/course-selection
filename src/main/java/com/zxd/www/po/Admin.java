@@ -1,6 +1,6 @@
 package com.zxd.www.po;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author Makonike
@@ -12,19 +12,10 @@ public class Admin {
     private String adminName;
     private String adminSalt;
     private String adminPassword;
-    private Date createTime;
+    private LocalDateTime createTime;
     private Integer removed;
 
     public Admin() {
-    }
-
-    public Admin(Integer adminId, String adminName, String adminSalt, String adminPassword, Date createTime, Integer removed) {
-        this.adminId = adminId;
-        this.adminName = adminName;
-        this.adminSalt = adminSalt;
-        this.adminPassword = adminPassword;
-        this.createTime = createTime;
-        this.removed = removed;
     }
 
     public Integer getAdminId() {
@@ -59,11 +50,11 @@ public class Admin {
         this.adminPassword = adminPassword;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
