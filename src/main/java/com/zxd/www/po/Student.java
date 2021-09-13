@@ -11,20 +11,20 @@ public class Student {
     private String studentNo;
     private String studentName;
     private Integer studentSex;
-    private Integer classId;
-    private Integer selectedCount;
+    private Integer studentClassId;
+    private Integer selectedCourseCount;
     private Integer removed;
 
     public Student() {
     }
 
-    public Student(Integer studentId, String studentNo, String studentName, Integer studentSex, Integer classId, Integer selectedCount, Integer removed) {
+    public Student(Integer studentId, String studentNo, String studentName, Integer studentSex, Integer studentClassId, Integer selectedCourseCount, Integer removed) {
         this.studentId = studentId;
         this.studentNo = studentNo;
         this.studentName = studentName;
         this.studentSex = studentSex;
-        this.classId = classId;
-        this.selectedCount = selectedCount;
+        this.studentClassId = studentClassId;
+        this.selectedCourseCount = selectedCourseCount;
         this.removed = removed;
     }
 
@@ -60,20 +60,20 @@ public class Student {
         this.studentSex = studentSex;
     }
 
-    public Integer getClassId() {
-        return classId;
+    public Integer getStudentClassId() {
+        return studentClassId;
     }
 
-    public void setClassId(Integer classId) {
-        this.classId = classId;
+    public void setStudentClassId(Integer studentClassId) {
+        this.studentClassId = studentClassId;
     }
 
-    public Integer getSelectedCount() {
-        return selectedCount;
+    public Integer getSelectedCourseCount() {
+        return selectedCourseCount;
     }
 
-    public void setSelectedCount(Integer selectedCount) {
-        this.selectedCount = selectedCount;
+    public void setSelectedCourseCount(Integer selectedCourseCount) {
+        this.selectedCourseCount = selectedCourseCount;
     }
 
     public Integer getRemoved() {
@@ -91,8 +91,8 @@ public class Student {
                 ", studentNo='" + studentNo + '\'' +
                 ", studentName='" + studentName + '\'' +
                 ", studentSex=" + studentSex +
-                ", classId=" + classId +
-                ", selectedCount=" + selectedCount +
+                ", studentClassId=" + studentClassId +
+                ", selectedCourseCount=" + selectedCourseCount +
                 ", removed=" + removed +
                 '}';
     }
