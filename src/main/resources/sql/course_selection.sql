@@ -11,7 +11,7 @@
  Target Server Version : 50733
  File Encoding         : 65001
 
- Date: 11/09/2021 16:06:40
+ Date: 13/09/2021 21:14:10
 */
 
 SET NAMES utf8mb4;
@@ -63,6 +63,21 @@ CREATE TABLE `conn_course_coursedel`  (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for conn_student_user
+-- ----------------------------
+DROP TABLE IF EXISTS `conn_student_user`;
+CREATE TABLE `conn_student_user`  (
+  `student_user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`student_user_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of conn_student_user
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_admin
 -- ----------------------------
 DROP TABLE IF EXISTS `t_admin`;
@@ -71,14 +86,17 @@ CREATE TABLE `t_admin`  (
   `admin_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `admin_salt` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `admin_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `create_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `removed` tinyint(2) NOT NULL DEFAULT 0 COMMENT '是否删除 0-否 1-是',
   PRIMARY KEY (`admin_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_admin
 -- ----------------------------
+INSERT INTO `t_admin` VALUES (1, 'admin01', NULL, '123321', '2021-09-13 15:26:04', 0);
+INSERT INTO `t_admin` VALUES (2, 'admin02', NULL, '123123', '2021-09-13 14:59:21', 0);
+INSERT INTO `t_admin` VALUES (3, 'admin03', NULL, '0123456', '2021-09-13 15:27:04', 1);
 
 -- ----------------------------
 -- Table structure for t_class
@@ -180,18 +198,40 @@ INSERT INTO `t_institute` VALUES (1, '计算机', NULL);
 DROP TABLE IF EXISTS `t_student`;
 CREATE TABLE `t_student`  (
   `student_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NULL DEFAULT NULL,
   `student_no` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '学号',
   `student_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `student_sex` tinyint(2) NOT NULL COMMENT '学生性别 0-男 1-女',
-  `studnet_class_id` int(11) NOT NULL COMMENT '班级',
+  `student_sex` tinyint(2) NOT NULL DEFAULT 0 COMMENT '学生性别 0-男 1-女',
+  `student_class_id` int(11) NOT NULL COMMENT '班级',
   `selected_course_count` int(11) NOT NULL DEFAULT 0 COMMENT '已选课程数',
   `removed` tinyint(2) NOT NULL DEFAULT 0 COMMENT '是否删除 0-否 1-是',
   PRIMARY KEY (`student_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_student
 -- ----------------------------
-INSERT INTO `t_student` VALUES (1, '3120005100', 'wmm', 0, 1, 0, 0);
+INSERT INTO `t_student` VALUES (1, 2, '3120005178', 'struct', 0, 1, 0, 0);
+INSERT INTO `t_student` VALUES (2, 1, '3120005180', 'wmm', 0, 1, 0, 0);
+INSERT INTO `t_student` VALUES (3, 3, '3120005181', 'wyf', 0, 1, 0, 0);
+
+-- ----------------------------
+-- Table structure for t_user
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user`;
+CREATE TABLE `t_user`  (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '学号',
+  `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `salt` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`user_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_user
+-- ----------------------------
+INSERT INTO `t_user` VALUES (1, '3120005180', '123456', NULL);
+INSERT INTO `t_user` VALUES (2, '3120005178', '123123', NULL);
+INSERT INTO `t_user` VALUES (3, '3120005181', '123321', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
