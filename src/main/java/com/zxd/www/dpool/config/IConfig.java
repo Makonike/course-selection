@@ -13,14 +13,14 @@ public interface IConfig {
     void setDriverClass(final String driverClass);
 
     /**
-     * 设置JdbcUtil
-     * @param jdbcUtil JdbcUtil
+     * 设置JdbcUrl
+     * @param jdbcUrl jdbcUrl
      */
-    void setJdbcUtil(final String jdbcUtil);
+    void setJdbcUrl(final String jdbcUrl);
 
     /**
      * 设置用户信息
-     * @param user user
+     * @param username username
      */
     void setUsername(final String username);
 

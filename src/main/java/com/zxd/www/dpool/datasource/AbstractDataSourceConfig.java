@@ -24,6 +24,7 @@ public abstract class AbstractDataSourceConfig extends DataSourceConfigAdaptor {
         return jdbcUrl;
     }
 
+    @Override
     public void setJdbcUrl(String jdbcUrl) {
         this.jdbcUrl = jdbcUrl;
     }

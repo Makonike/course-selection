@@ -22,7 +22,7 @@ public class DataSourceConfigAdaptor implements IDataSourceConfig {
     }
 
     @Override
-    public void setJdbcUtil(String jdbcUtil) {
+    public void setJdbcUrl(String jdbcUrl) {
 
     }
 

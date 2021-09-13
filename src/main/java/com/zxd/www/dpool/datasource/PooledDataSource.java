@@ -54,11 +54,11 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
             Properties properties = new Properties();
             InputStream in = PooledDataSource.class.getClassLoader().getResourceAsStream("db.properties");
             properties.load(in);
-            Class.forName(properties.getProperty(DataSourceConstant.DRIVER_CLASS));
+            setDriverClass(properties.getProperty(DataSourceConstant.DRIVER_CLASS));
             setJdbcUrl(properties.getProperty(DataSourceConstant.JDBC_URL));
             setUsername(properties.getProperty(DataSourceConstant.USER_NAME));
             setPassword(properties.getProperty(DataSourceConstant.PASSWORD));
-        } catch (ClassNotFoundException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         // 初始化数据库连接池
@@ -160,8 +160,9 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
      */
     private Connection createConnection(){
         try {
+            Class.forName(super.getDriverClass());
             return DriverManager.getConnection(super.getJdbcUrl(),super.getUsername(),super.getPassword());
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             throw new PoolException(e);
         }
@@ -219,4 +220,18 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
             logger.debug("valid query is empty");
         }
     }
+
+    /**
+     * 销毁数据库连接池，关闭所有连接，释放资源
+     */
+    @Override
+    public void destroy(){
+
+        logger.info("start destroy dataSource now ");
+        for (IPooledConnection iPooledConnection : pool) {
+            iPooledConnection.remove();
+        }
+        logger.info("finish destroy dataSource !");
+    }
+
 }
