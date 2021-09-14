@@ -59,7 +59,8 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
             setJdbcUrl(properties.getProperty(DataSourceConstant.JDBC_URL));
             setUsername(properties.getProperty(DataSourceConstant.USER_NAME));
             setPassword(properties.getProperty(DataSourceConstant.PASSWORD));
-        } catch (IOException e) {
+            Class.forName(super.getDriverClass());
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         // 初始化数据库连接池
@@ -161,10 +162,8 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
      */
     private Connection createConnection(){
         try {
-            Class.forName(super.getDriverClass());
             return DriverManager.getConnection(super.getJdbcUrl(),super.getUsername(),super.getPassword());
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
             throw new PoolException(e);
         }
     }
@@ -241,7 +240,7 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
         try {
             DriverManager.deregisterDriver(DriverManager.getDriver(super.getJdbcUrl()));
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new PoolException(e);
         }
 
     }
