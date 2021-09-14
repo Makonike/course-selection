@@ -20,6 +20,13 @@
   </properties>
 
   <dependencies>
+    <!-- servlet类 -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
     <!-- 单元测试 -->
     <dependency>
       <groupId>junit</groupId>
@@ -32,11 +39,12 @@
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.26</version>
+      <scope>provided</scope>
     </dependency>
     <!-- 日志框架 -->
     <dependency>
       <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
+      <artifactId>slf4j-simple</artifactId>
       <version>1.7.25</version>
     </dependency>
   </dependencies>
