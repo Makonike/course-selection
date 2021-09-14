@@ -27,6 +27,7 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
 
     final static Logger logger = LoggerFactory.getLogger(PooledConnection.class);
 
+    private ScheduledExecutorService executor = null;
     private List<IPooledConnection> pool = null;
 
     public PooledDataSource() {
@@ -175,7 +176,7 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
 
         if(!"".equals(validQuery) && validQuery != null){
             // 为空闲的连接检测开一个线程
-            ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+            executor = Executors.newSingleThreadScheduledExecutor();
             executor.scheduleAtFixedRate(new Runnable() {
                 @Override
                 public void run() {
@@ -227,11 +228,22 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
     @Override
     public void destroy(){
 
-        logger.info("start destroy dataSource now ");
+        // 关闭检查空闲连接的线程
+        executor.shutdown();
+        // 关闭所有连接
         for (IPooledConnection iPooledConnection : pool) {
             iPooledConnection.remove();
         }
-        logger.info("finish destroy dataSource !");
+        if (logger.isInfoEnabled()) {
+            logger.info("{dataSource-" + this + "} closing ...");
+        }
+        // 删除注册驱动
+        try {
+            DriverManager.deregisterDriver(DriverManager.getDriver(super.getJdbcUrl()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
