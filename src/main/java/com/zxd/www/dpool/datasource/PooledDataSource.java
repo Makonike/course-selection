@@ -25,14 +25,24 @@ import java.util.concurrent.*;
  **/
 public class PooledDataSource extends AbstractPooledDataSourceConfig{
 
+    private static volatile PooledDataSource instance = null;
+
     final static Logger logger = LoggerFactory.getLogger(PooledConnection.class);
 
     private ScheduledExecutorService executor = null;
     private List<IPooledConnection> pool = null;
 
-    public PooledDataSource() {
-        init();
+    private PooledDataSource() {
+        this.init();
     }
+
+    public static synchronized PooledDataSource getInstance(){
+        if(instance == null){
+            instance = new PooledDataSource();
+        }
+        return instance;
+    }
+
 
     /**
      * 归还连接
@@ -206,7 +216,7 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
         if(!"".equals(validQuery) && super.validQuery != null){
             Connection connection = pooledConnection.getConnection();
             try {
-                //若有效则返回true，无效则申请一个新连接来替代
+                // 若有效则返回true，无效则申请一个新连接来替代
                 if(!connection.isValid(super.validTimeOutSeconds)){
                     logger.debug("the connection is inValid, start create one replace it");
                     Connection newConnection = createConnection();

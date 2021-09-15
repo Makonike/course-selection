@@ -14,10 +14,10 @@ import java.sql.Statement;
  **/
 public class JdbcUtils {
 
-    private static PooledDataSource dataSource = new PooledDataSource();
+    private static final PooledDataSource DATA_SOURCE = PooledDataSource.getInstance();
 
     public static Connection getConnection(){
-        return dataSource.getConnection();
+        return DATA_SOURCE.getConnection();
     }
 
     public static void close(ResultSet rs, Statement stmt, Connection conn) {
@@ -55,7 +55,7 @@ public class JdbcUtils {
 
 
     public static PooledDataSource getDataSource(){
-        return dataSource;
+        return DATA_SOURCE;
     }
 
 }
