@@ -20,6 +20,17 @@
   </properties>
 
   <dependencies>
+    <!-- json序列化工具 -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.12</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.11.3</version>
+    </dependency>
     <!-- servlet类 -->
     <dependency>
       <groupId>javax.servlet</groupId>
