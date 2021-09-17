@@ -1,7 +1,7 @@
-package com.zxd.www.dpool.config;
+package com.zxd.www.util.dpool.config;
 
 
-import com.zxd.www.dpool.connection.IPooledConnection;
+import com.zxd.www.util.dpool.connection.IPooledConnection;
 
 /**
  * @author Makonike

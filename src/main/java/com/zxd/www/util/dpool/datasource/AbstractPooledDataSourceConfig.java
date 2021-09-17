@@ -1,9 +1,9 @@
-package com.zxd.www.dpool.datasource;
+package com.zxd.www.util.dpool.datasource;
 
 
-import com.zxd.www.dpool.config.ILifeCycle;
-import com.zxd.www.dpool.config.IPooledDataSourceConfig;
-import com.zxd.www.dpool.constant.DataSourceConstant;
+import com.zxd.www.util.dpool.config.ILifeCycle;
+import com.zxd.www.util.dpool.config.IPooledDataSourceConfig;
+import com.zxd.www.util.dpool.constant.DataSourceConstant;
 
 /**
  * @author Makonike

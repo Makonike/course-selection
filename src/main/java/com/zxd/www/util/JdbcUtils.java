@@ -1,8 +1,7 @@
 package com.zxd.www.util;
 
-import com.zxd.www.dpool.datasource.PooledDataSource;
+import com.zxd.www.util.dpool.datasource.PooledDataSource;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

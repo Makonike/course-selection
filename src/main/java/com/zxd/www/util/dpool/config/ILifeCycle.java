@@ -1,4 +1,4 @@
-package com.zxd.www.dpool.config;
+package com.zxd.www.util.dpool.config;
 
 /**
  * 生命周期管理

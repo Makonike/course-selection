@@ -1,4 +1,4 @@
-package com.zxd.www.dpool.exception;
+package com.zxd.www.util.dpool.exception;
 
 /**
  * @author Makonike

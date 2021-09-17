@@ -1,10 +1,8 @@
-package com.zxd.www.dpool.connection;
+package com.zxd.www.util.dpool.connection;
 
 
-import com.zxd.www.dpool.config.IPooledDataSourceConfig;
-import com.zxd.www.dpool.exception.PoolException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.zxd.www.util.dpool.config.IPooledDataSourceConfig;
+import com.zxd.www.util.dpool.exception.PoolException;
 
 import java.sql.*;
 import java.util.Map;
@@ -16,8 +14,6 @@ import java.util.concurrent.Executor;
  * @date 2021-09-11 10:03
  **/
 public class PooledConnection implements IPooledConnection {
-
-    final static Logger logger = LoggerFactory.getLogger(PooledConnection.class);
 
     /**
      * 标记是否繁忙

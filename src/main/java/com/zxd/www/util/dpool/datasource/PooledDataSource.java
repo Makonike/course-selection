@@ -1,9 +1,9 @@
-package com.zxd.www.dpool.datasource;
+package com.zxd.www.util.dpool.datasource;
 
-import com.zxd.www.dpool.connection.IPooledConnection;
-import com.zxd.www.dpool.connection.PooledConnection;
-import com.zxd.www.dpool.constant.DataSourceConstant;
-import com.zxd.www.dpool.exception.PoolException;
+import com.zxd.www.util.dpool.connection.IPooledConnection;
+import com.zxd.www.util.dpool.connection.PooledConnection;
+import com.zxd.www.util.dpool.constant.DataSourceConstant;
+import com.zxd.www.util.dpool.exception.PoolException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

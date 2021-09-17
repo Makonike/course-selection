@@ -1,4 +1,4 @@
-package com.zxd.www.dpool.constant;
+package com.zxd.www.util.dpool.constant;
 
 /**
  * @author Makonike

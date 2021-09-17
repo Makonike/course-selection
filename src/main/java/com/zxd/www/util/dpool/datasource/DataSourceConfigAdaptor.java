@@ -1,7 +1,7 @@
-package com.zxd.www.dpool.datasource;
+package com.zxd.www.util.dpool.datasource;
 
 
-import com.zxd.www.dpool.config.IDataSourceConfig;
+import com.zxd.www.util.dpool.config.IDataSourceConfig;
 
 import java.io.PrintWriter;
 import java.sql.Connection;
