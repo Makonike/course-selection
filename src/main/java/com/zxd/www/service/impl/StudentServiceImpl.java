@@ -1,7 +1,8 @@
 package com.zxd.www.service.impl;
 
 import com.zxd.www.dao.StudentDao;
-import com.zxd.www.dao.impl.StudentDaoImpl;
+import com.zxd.www.util.ioc.annotation.Autowired;
+import com.zxd.www.util.ioc.annotation.Component;
 import com.zxd.www.po.Student;
 import com.zxd.www.service.StudentService;
 
@@ -12,9 +13,11 @@ import java.util.List;
  * @author Makonike
  * @date 2021-09-13 14:09
  **/
+@Component
 public class StudentServiceImpl implements StudentService {
 
-    StudentDao studentDao = new StudentDaoImpl();
+    @Autowired
+    StudentDao studentDao;
 
     /**
      * 插入学生信息

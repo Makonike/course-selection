@@ -1,7 +1,8 @@
 package com.zxd.www.service.impl;
 
 import com.zxd.www.dao.AdminDao;
-import com.zxd.www.dao.impl.AdminDaoImpl;
+import com.zxd.www.util.ioc.annotation.Autowired;
+import com.zxd.www.util.ioc.annotation.Component;
 import com.zxd.www.po.Admin;
 import com.zxd.www.service.AdminService;
 
@@ -12,9 +13,11 @@ import java.util.List;
  * @author Makonike
  * @date 2021-09-13 19:29
  **/
+@Component
 public class AdminServiceImpl implements AdminService {
 
-    AdminDao adminDao = new AdminDaoImpl();
+    @Autowired
+    AdminDao adminDao;
 
     /**
      * 添加管理员

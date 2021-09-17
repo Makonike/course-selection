@@ -2,6 +2,7 @@ package com.zxd.www.dao.impl;
 
 import com.zxd.www.dao.AdminDao;
 import com.zxd.www.dao.BaseDao;
+import com.zxd.www.util.ioc.annotation.Component;
 import com.zxd.www.po.Admin;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * @author Makonike
  * @date 2021-09-13 14:40
  **/
+@Component
 public class AdminDaoImpl extends BaseDao implements AdminDao {
 
     @Override

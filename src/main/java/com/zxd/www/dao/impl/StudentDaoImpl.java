@@ -2,6 +2,7 @@ package com.zxd.www.dao.impl;
 
 import com.zxd.www.dao.BaseDao;
 import com.zxd.www.dao.StudentDao;
+import com.zxd.www.util.ioc.annotation.Component;
 import com.zxd.www.po.Student;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * @author Makonike
  * @date 2021-09-12 23:17
  **/
+@Component
 public class StudentDaoImpl extends BaseDao implements StudentDao {
 
     @Override
