@@ -4,6 +4,7 @@ import com.zxd.www.util.JdbcUtils;
 import com.zxd.www.util.StringUtils;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,16 +67,30 @@ public abstract class BaseDao {
         return null;
     }
 
+    /**
+     * 通用类，反射实例化对象并为每个字段赋值
+     * @return 实例化对象
+     */
     public <T> T pressIn(Class<T> clazz, ResultSet rs, ResultSetMetaData rsmd, int columnCount){
         try {
+            // 实例化对象
             T t = clazz.newInstance();
             for (int i = 0; i < columnCount; i++) {
+                // 从1开始为每个字段赋值
                 Object columnValue = rs.getObject(i + 1);
+                // 获取字段名
                 String columnLabel = rsmd.getColumnLabel(i + 1);
+                // 将字段名改为属性名
                 columnLabel = StringUtils.changeColumnName(columnLabel);
+                // 获取set方法名
+                String setMethodName = StringUtils.changeToUpper(columnLabel);
+                System.out.println(setMethodName);
+                // 获取属性
                 Field field = clazz.getDeclaredField(columnLabel);
-                field.setAccessible(true);
-                field.set(t, columnValue);
+                // 获取set方法
+                Method method = clazz.getDeclaredMethod(setMethodName, field.getType());
+                // 调用set方法
+                method.invoke(t,columnValue);
             }
             return t;
         } catch (Exception e) {

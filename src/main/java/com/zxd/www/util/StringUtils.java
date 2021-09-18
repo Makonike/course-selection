@@ -44,5 +44,13 @@ public class StringUtils {
         return className.toLowerCase(Locale.ROOT).charAt(0) + className.substring(1);
     }
 
+    /**
+     * 获取改属性名的set方法名
+     * @param fieldName 属性名
+     * @return set方法名
+     */
+    public static String changeToUpper(String fieldName){
+        return "set" + fieldName.toUpperCase(Locale.ROOT).charAt(0) + fieldName.substring(1);
+    }
 
 }
