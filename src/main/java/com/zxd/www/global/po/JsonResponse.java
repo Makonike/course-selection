@@ -12,7 +12,7 @@ public class JsonResponse {
     /**
      * 状态码
      */
-    private ResultCode code;
+    private String code;
 
     /**
      * 回传信息
@@ -28,7 +28,7 @@ public class JsonResponse {
      * 默认状态为ok
      */
     public JsonResponse() {
-        this.code = ResultCode.OK;
+        this.code = ResultCode.OK.getCode();
     }
 
 
@@ -38,7 +38,7 @@ public class JsonResponse {
      * @return JsonResponse
      */
     public JsonResponse code(ResultCode code) {
-        this.code = code;
+        this.code = code.getCode();
         return this;
     }
 
@@ -48,42 +48,42 @@ public class JsonResponse {
      * @return JsonResponse
      */
     public JsonResponse badRequest() {
-        this.code = ResultCode.BAD_REQUEST;
+        this.code = ResultCode.BAD_REQUEST.getCode();
         return this;
     }
 
     public JsonResponse unauthorized() {
-        this.code = ResultCode.UNAUTHORIZED;
+        this.code = ResultCode.UNAUTHORIZED.getCode();
         return this;
     }
 
     public JsonResponse forbidden() {
-        this.code = ResultCode.FORBIDDEN;
+        this.code = ResultCode.FORBIDDEN.getCode();
         return this;
     }
 
     public JsonResponse notFound() {
-        this.code = ResultCode.NOT_FOUND;
+        this.code = ResultCode.NOT_FOUND.getCode();
         return this;
     }
 
     public JsonResponse gone() {
-        this.code = ResultCode.GONE;
+        this.code = ResultCode.GONE.getCode();
         return this;
     }
 
     public JsonResponse unprocessableEntity() {
-        this.code = ResultCode.UNPROCESSABLE_ENTITY;
+        this.code = ResultCode.UNPROCESSABLE_ENTITY.getCode();
         return this;
     }
 
     public JsonResponse tooManyRequest() {
-        this.code = ResultCode.TOO_MANY_REQUEST;
+        this.code = ResultCode.TOO_MANY_REQUEST.getCode();
         return this;
     }
 
     public JsonResponse internalServerError() {
-        this.code = ResultCode.INTERNAL_SERVER_ERROR;
+        this.code = ResultCode.INTERNAL_SERVER_ERROR.getCode();
         return this;
     }
 
@@ -108,4 +108,27 @@ public class JsonResponse {
         return this;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(ResultCode code) {
+        this.code = code.getCode();
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
 }

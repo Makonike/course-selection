@@ -60,10 +60,10 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
      */
     @Override
     public void init() {
+        Properties properties = new Properties();
+        InputStream in = PooledDataSource.class.getClassLoader().getResourceAsStream(DataSourceConstant.DP_CONFIG);
         try {
             // 读取配置文件
-            Properties properties = new Properties();
-            InputStream in = PooledDataSource.class.getClassLoader().getResourceAsStream("db.properties");
             properties.load(in);
             setDriverClass(properties.getProperty(DataSourceConstant.DRIVER_CLASS));
             setJdbcUrl(properties.getProperty(DataSourceConstant.JDBC_URL));
@@ -72,6 +72,16 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
             Class.forName(super.getDriverClass());
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
+            throw new PoolException(e);
+        } finally {
+            if(null != in){
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    throw new PoolException(e);
+                }
+            }
         }
         // 初始化数据库连接池
         this.initJdbcPool();

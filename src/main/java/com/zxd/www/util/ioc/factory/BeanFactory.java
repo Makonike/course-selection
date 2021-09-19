@@ -32,8 +32,6 @@ public class BeanFactory {
         }
     }
 
-
-
     public static Object getBean(Class<?> clazz){
         if(CLASSES_INSTANCE.containsKey(clazz)){
             return CLASSES_INSTANCE.get(clazz);
@@ -42,12 +40,11 @@ public class BeanFactory {
     }
 
     public static void instanceBeans(){
-        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         List<String> cfn = ClassScanner.getClassFullName();
         if(cfn.size() > 0){
             for (String className : cfn) {
                 try {
-                    createBean(classLoader.loadClass(className));
+                    createBean(Class.forName(className));
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                     throw new RuntimeException(e);
