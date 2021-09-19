@@ -11,7 +11,7 @@
  Target Server Version : 50733
  File Encoding         : 65001
 
- Date: 13/09/2021 21:14:10
+ Date: 19/09/2021 16:55:10
 */
 
 SET NAMES utf8mb4;
@@ -107,15 +107,16 @@ CREATE TABLE `t_class`  (
   `class_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '班级名',
   `institute_id` int(11) NOT NULL COMMENT '学院id',
   `grade_id` int(11) NOT NULL COMMENT '年级id',
-  `create_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `removed` tinyint(2) NOT NULL DEFAULT 0 COMMENT '是否删除 0-否 1-是',
   PRIMARY KEY (`class_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_class
 -- ----------------------------
 INSERT INTO `t_class` VALUES (1, '计科2班', 1, 1, '2021-09-10 16:26:18', 0);
+INSERT INTO `t_class` VALUES (2, '软工3班', 1, 1, '2021-09-19 16:38:04', 0);
 
 -- ----------------------------
 -- Table structure for t_course
@@ -128,17 +129,19 @@ CREATE TABLE `t_course`  (
   `teacher_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `course_time` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '上课时间段',
   `course_position` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `course_credit` float(2, 2) NOT NULL DEFAULT 0.00 COMMENT '学分',
+  `course_credit` float(11, 2) NOT NULL DEFAULT 0.00 COMMENT '学分',
   `course_hour` int(11) NOT NULL DEFAULT 0 COMMENT '学时',
-  `create_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   `course_desc` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `removed` tinyint(2) NOT NULL DEFAULT 0 COMMENT '是否删除 0-否 1-是',
   PRIMARY KEY (`course_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_course
 -- ----------------------------
+INSERT INTO `t_course` VALUES (1, '数据结构', '自然科学', '苏庆', '星期一:0102;星期三:0607', '教二-316', 2.50, 60, '2021-09-19 16:48:10', NULL, 0);
+INSERT INTO `t_course` VALUES (2, '算法设计与分析', '自然科学', '王丽娟', '星期一:0304', '教二-324', 2.00, 42, '2021-09-19 16:50:22', NULL, 0);
 
 -- ----------------------------
 -- Table structure for t_coursedel
@@ -147,8 +150,8 @@ DROP TABLE IF EXISTS `t_coursedel`;
 CREATE TABLE `t_coursedel`  (
   `coursedel_id` int(11) NOT NULL AUTO_INCREMENT,
   `course_id` int(11) NOT NULL,
-  `start_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
-  `exp_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `start_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  `exp_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   `max_num` int(11) NOT NULL DEFAULT 0,
   `now_num` int(11) NOT NULL DEFAULT 0,
   `coursedel_desc` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '选课信息详情',
