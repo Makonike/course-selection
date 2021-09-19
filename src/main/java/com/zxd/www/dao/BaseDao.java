@@ -1,9 +1,11 @@
 package com.zxd.www.dao;
 
+import com.zxd.www.exception.DaoException;
 import com.zxd.www.util.JdbcUtils;
 import com.zxd.www.util.StringUtils;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ public abstract class BaseDao {
      * 增删改操作
      * @param sql sql
      * @param args args
-     * @return >0-成功 0-失败
+     * @return >0-成功
      */
     public int update(String sql, Object... args){
         Connection conn = JdbcUtils.getConnection();
@@ -31,12 +33,12 @@ public abstract class BaseDao {
                 ps.setObject(i+1,args[i]);
             }
             return ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+            throw new DaoException("预编译更新语句异常：" + sql, e);
+        } finally {
             JdbcUtils.close(ps,null);
         }
-        return 0;
     }
 
     /**
@@ -59,9 +61,10 @@ public abstract class BaseDao {
             if (rs.next()) {
                 return pressIn(clazz, rs, rsmd, columnCount);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+            throw new DaoException("预编译更新语句异常：" + sql, e);
+        } finally {
             JdbcUtils.close(rs,ps,null);
         }
         return null;
@@ -84,7 +87,6 @@ public abstract class BaseDao {
                 columnLabel = StringUtils.changeColumnName(columnLabel);
                 // 获取set方法名
                 String setMethodName = StringUtils.changeToUpper(columnLabel);
-                System.out.println(setMethodName);
                 // 获取属性
                 Field field = clazz.getDeclaredField(columnLabel);
                 // 获取set方法
@@ -95,8 +97,8 @@ public abstract class BaseDao {
             return t;
         } catch (Exception e) {
             e.printStackTrace();
+            throw new DaoException(" 字段赋值失败 ", e);
         }
-        return null;
     }
 
     public PreparedStatement execQuery(Connection conn, String sql, Object... args){
@@ -109,8 +111,8 @@ public abstract class BaseDao {
             return ps;
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException(e);
         }
-        return null;
     }
 
 
@@ -136,12 +138,12 @@ public abstract class BaseDao {
                 list.add(pressIn(clazz, rs, rsmd, columnCount));
             }
             return list;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException("预编译更新语句异常：" + sql, e);
         } finally {
             JdbcUtils.close(rs,ps,null);
         }
-        return null;
     }
 
 
@@ -166,6 +168,7 @@ public abstract class BaseDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException("预编译更新语句异常：" + sql, e);
         }finally{
             JdbcUtils.close(rs,ps,null);
         }
