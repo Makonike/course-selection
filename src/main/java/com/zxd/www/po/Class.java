@@ -1,5 +1,6 @@
 package com.zxd.www.po;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -10,6 +11,7 @@ import java.util.Date;
 public class Class {
 
     private Integer classId;
+
     private String className;
     /**
      * 学院id
@@ -19,13 +21,13 @@ public class Class {
      * 年级id
      */
     private Integer gradeId;
-    private Date createTime;
+    private LocalDateTime createTime;
     private Integer removed;
 
     public Class() {
     }
 
-    public Class(Integer classId, String className, Integer instituteId, Integer gradeId, Date createTime, Integer removed) {
+    public Class(Integer classId, String className, Integer instituteId, Integer gradeId, LocalDateTime createTime, Integer removed) {
         this.classId = classId;
         this.className = className;
         this.instituteId = instituteId;
@@ -66,11 +68,11 @@ public class Class {
         this.gradeId = gradeId;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 

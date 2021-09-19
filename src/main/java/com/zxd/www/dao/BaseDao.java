@@ -37,7 +37,7 @@ public abstract class BaseDao {
             e.printStackTrace();
             throw new DaoException("预编译更新语句异常：" + sql, e);
         } finally {
-            JdbcUtils.close(ps,null);
+            JdbcUtils.close(ps,conn);
         }
     }
 
@@ -65,7 +65,7 @@ public abstract class BaseDao {
             e.printStackTrace();
             throw new DaoException("预编译更新语句异常：" + sql, e);
         } finally {
-            JdbcUtils.close(rs,ps,null);
+            JdbcUtils.close(rs,ps,conn);
         }
         return null;
     }
@@ -142,7 +142,7 @@ public abstract class BaseDao {
             e.printStackTrace();
             throw new DaoException("预编译更新语句异常：" + sql, e);
         } finally {
-            JdbcUtils.close(rs,ps,null);
+            JdbcUtils.close(rs,ps,conn);
         }
     }
 
@@ -170,7 +170,7 @@ public abstract class BaseDao {
             e.printStackTrace();
             throw new DaoException("预编译更新语句异常：" + sql, e);
         }finally{
-            JdbcUtils.close(rs,ps,null);
+            JdbcUtils.close(rs,ps,conn);
         }
         return null;
     }

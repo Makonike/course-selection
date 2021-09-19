@@ -1,6 +1,6 @@
 package com.zxd.www.po;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * 课程实体类
@@ -41,7 +41,7 @@ public class Course {
     /**
      * 开课时间
      */
-    private Date createTime;
+    private LocalDateTime createTime;
     /**
      * 课程详情
      */
@@ -51,7 +51,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(Integer courseId, String courseName, String courseType, String teacherName, String courseTime, String coursePosition, Float courseCredit, Integer courseHour, Date createTime, String courseDesc, Integer removed) {
+    public Course(Integer courseId, String courseName, String courseType, String teacherName, String courseTime, String coursePosition, Float courseCredit, Integer courseHour, LocalDateTime createTime, String courseDesc, Integer removed) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseType = courseType;
@@ -129,11 +129,11 @@ public class Course {
         this.courseHour = courseHour;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
