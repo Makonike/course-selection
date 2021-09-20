@@ -16,6 +16,7 @@ public class LoaderHelper {
         BeanFactory.initBeanFactory(path);
         Arrays.stream(classes).forEach(c -> {
             try {
+                // 单个参数其实也是默认初始化类的
                 Class.forName(c.getName(),true,Thread.currentThread().getContextClassLoader());
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();

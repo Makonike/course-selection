@@ -1,4 +1,4 @@
-package com.zxd.www.util.mvc.bean;
+package com.zxd.www.util.mvc.constant;
 
 /**
  * @author Makonike

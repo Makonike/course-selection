@@ -6,6 +6,7 @@ import com.zxd.www.global.po.JsonResponse;
 import com.zxd.www.util.ioc.factory.BeanFactory;
 import com.zxd.www.util.mvc.bean.MappingHandler;
 import com.zxd.www.util.mvc.constant.MvcConstant;
+import com.zxd.www.util.mvc.exception.MvcException;
 import com.zxd.www.util.mvc.helper.ControllerHelper;
 import com.zxd.www.util.mvc.helper.LoaderHelper;
 
@@ -67,7 +68,7 @@ public class DispatcherController extends HttpServlet {
                 resp.getWriter().println(jsonResponse);
             } catch (IllegalAccessException | InvocationTargetException | IOException e) {
                 e.printStackTrace();
-                throw new RuntimeException(e);
+                throw new MvcException("调用方法失败：" + handler.getMethod().getName(), e);
             }
         }
     }
@@ -82,6 +83,7 @@ public class DispatcherController extends HttpServlet {
             LoaderHelper.init(properties.getProperty(MvcConstant.PACKAGE_NAME));
         } catch (IOException e) {
             e.printStackTrace();
+            throw new MvcException("读取配置文件失败：" + MvcConstant.APPLICATION_CONFIG, e);
         } finally {
             if(null != in){
                 try {
