@@ -2,6 +2,7 @@ package com.zxd.www.util.ioc.factory;
 
 import com.zxd.www.util.ioc.annotation.Autowired;
 import com.zxd.www.util.ioc.annotation.Component;
+import com.zxd.www.util.ioc.exception.IocException;
 import com.zxd.www.util.ioc.scan.ClassScanner;
 import com.zxd.www.util.mvc.annotation.Controller;
 
@@ -36,7 +37,7 @@ public class BeanFactory {
         if(CLASSES_INSTANCE.containsKey(clazz)){
             return CLASSES_INSTANCE.get(clazz);
         }
-        throw new RuntimeException("can't find the class: " + clazz.getName());
+        throw new IocException("不到该类：" + clazz.getName());
     }
 
     public static void instanceBeans(){
@@ -47,7 +48,7 @@ public class BeanFactory {
                     createBean(Class.forName(className));
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
-                    throw new RuntimeException(e);
+                    throw new IocException("找不到该类：" + className , e);
                 }
             }
         }
@@ -66,8 +67,9 @@ public class BeanFactory {
         try {
             // 实例化
             classInstance = clazz.newInstance();
-        } catch (Exception e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
+            throw new IocException("实例化对象失败：" + clazz.getName(), e);
         }
         // 将该类放入容器
         CLASSES_INSTANCE.put(clazz, classInstance);
@@ -103,7 +105,7 @@ public class BeanFactory {
                     field.set(CLASSES_INSTANCE.get(clazz), BeanFactory.getBean(fieldType));
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
-                    throw new RuntimeException(e);
+                    throw new IocException("注入实例失败：" + field.getName(), e);
                 }
             }
         }
