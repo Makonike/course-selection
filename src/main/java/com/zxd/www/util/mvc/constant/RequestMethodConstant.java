@@ -4,7 +4,7 @@ package com.zxd.www.util.mvc.constant;
  * @author Makonike
  * @date 2021-09-18 14:39
  **/
-public class RequestMethod {
+public class RequestMethodConstant {
 
     public static final String GET = "get";
 

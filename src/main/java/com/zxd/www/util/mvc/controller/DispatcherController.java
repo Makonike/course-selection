@@ -22,7 +22,7 @@ import java.util.Locale;
 import java.util.Properties;
 
 /**
- * 请求分发器，集中处理异常，分发请求，降低耦合
+ * 请求分发器，分发请求，降低耦合
  * @author Makonike
  * @date 2021-09-17 21:54
  **/

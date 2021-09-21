@@ -1,5 +1,7 @@
 package com.zxd.www.util.mvc.annotation;
 
+import com.zxd.www.util.mvc.constant.RequestMethodConstant;
+
 import java.lang.annotation.*;
 
 /**
@@ -30,5 +32,5 @@ public @interface RequestMapping {
     /**
      * 请求方法
      */
-    String method();
+    String method() default RequestMethodConstant.GET;
 }

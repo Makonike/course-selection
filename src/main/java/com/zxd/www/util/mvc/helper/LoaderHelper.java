@@ -1,5 +1,7 @@
 package com.zxd.www.util.mvc.helper;
 
+import com.zxd.www.global.filter.FilterExcludeUrl;
+import com.zxd.www.util.JwtUtils;
 import com.zxd.www.util.ioc.factory.BeanFactory;
 import com.zxd.www.util.ioc.scan.ClassScanner;
 
@@ -12,7 +14,7 @@ import java.util.Arrays;
 public class LoaderHelper {
 
     public static void init(String path){
-        Class<?>[] classes = {ClassScanner.class, BeanFactory.class, ControllerHelper.class};
+        Class<?>[] classes = { FilterExcludeUrl.class, JwtUtils.class, ClassScanner.class, BeanFactory.class, ControllerHelper.class};
         BeanFactory.initBeanFactory(path);
         Arrays.stream(classes).forEach(c -> {
             try {
