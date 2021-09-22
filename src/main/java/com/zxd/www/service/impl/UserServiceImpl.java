@@ -3,6 +3,7 @@ package com.zxd.www.service.impl;
 import com.zxd.www.dao.UserDao;
 import com.zxd.www.po.User;
 import com.zxd.www.service.UserService;
+import com.zxd.www.util.StringUtils;
 import com.zxd.www.util.ioc.annotation.Autowired;
 import com.zxd.www.util.ioc.annotation.Component;
 
@@ -20,7 +21,10 @@ public class UserServiceImpl implements UserService {
     public boolean addUser(String userName, String password) {
         User user = new User();
         user.setUsername(userName);
+        String salt = StringUtils.generateSalt();
+        password = StringUtils.addSaltPassword(password, salt);
         user.setPassword(password);
+        user.setSalt(salt);
         return userDao.insertUser(user) != 0;
     }
 
