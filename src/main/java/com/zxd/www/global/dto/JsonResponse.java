@@ -1,4 +1,4 @@
-package com.zxd.www.global.po;
+package com.zxd.www.global.dto;
 
 import com.zxd.www.global.enums.ResultCode;
 

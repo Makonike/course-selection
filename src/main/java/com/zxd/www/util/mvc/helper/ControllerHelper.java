@@ -2,6 +2,7 @@ package com.zxd.www.util.mvc.helper;
 
 import com.zxd.www.util.ioc.factory.BeanFactory;
 import com.zxd.www.util.mvc.annotation.Controller;
+import com.zxd.www.util.mvc.annotation.RequestBody;
 import com.zxd.www.util.mvc.annotation.RequestMapping;
 import com.zxd.www.util.mvc.annotation.RequestParam;
 import com.zxd.www.util.mvc.bean.MappingHandler;
@@ -56,12 +57,8 @@ public class ControllerHelper {
                             // 封装为request
                             Request request = new Request(rm.method(), uri);
 
-                            String[] args = Arrays.stream(method.getParameters())
-                                    .filter(parameter -> parameter.isAnnotationPresent(RequestParam.class))
-                                    .map(parameter -> parameter.getAnnotation(RequestParam.class).value())
-                                    .toArray(String[]::new);
                             // 封装为handler
-                            MappingHandler handler = new MappingHandler(uri, controllerClass, method, args);
+                            MappingHandler handler = new MappingHandler(uri, controllerClass, method);
 
                             REQUEST_MAPPING_HANDLER_MAP.put(request, handler);
                         });

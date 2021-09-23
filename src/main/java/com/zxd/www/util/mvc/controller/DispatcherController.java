@@ -2,9 +2,10 @@ package com.zxd.www.util.mvc.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.zxd.www.global.po.JsonResponse;
+import com.zxd.www.global.dto.JsonResponse;
 import com.zxd.www.util.ioc.factory.BeanFactory;
 import com.zxd.www.util.mvc.bean.MappingHandler;
+import com.zxd.www.util.mvc.bean.ParserHandler;
 import com.zxd.www.util.mvc.constant.MvcConstant;
 import com.zxd.www.util.mvc.exception.MvcException;
 import com.zxd.www.util.mvc.helper.ControllerHelper;
@@ -18,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.Locale;
 import java.util.Properties;
 
@@ -30,7 +33,7 @@ import java.util.Properties;
 public class DispatcherController extends HttpServlet {
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         // 请求的方法
         String requestMethod = req.getMethod().toLowerCase(Locale.ENGLISH);
@@ -50,15 +53,12 @@ public class DispatcherController extends HttpServlet {
             // 获取bean对象
             Object controllerBean = BeanFactory.getBean(controllerClass);
             // 获取参数名
-            String[] args = handler.getArgs();
-            Object[] parameters = new Object[args.length];
-            for (int i = 0; i < args.length; i++) {
-                // 获取参数
-                parameters[i] = req.getParameter(args[i]);
-            }
+            ParserHandler parser = new ParserHandler(req, handler);
+            // 解析请求
+            parser.parseRequest();
             try {
                 // 调用方法
-                JsonResponse invoke = (JsonResponse) handler.getMethod().invoke(controllerBean, parameters);
+                JsonResponse invoke = (JsonResponse) handler.getMethod().invoke(controllerBean, parser.getParams());
                 resp.setCharacterEncoding("UTF-8");
                 resp.setContentType("text/html;charset=utf-8");
                 // 转为json字符串

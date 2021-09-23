@@ -1,6 +1,6 @@
 package com.zxd.www.controller;
 
-import com.zxd.www.global.po.JsonResponse;
+import com.zxd.www.global.dto.JsonResponse;
 import com.zxd.www.po.User;
 import com.zxd.www.service.UserService;
 import com.zxd.www.util.JwtUtils;

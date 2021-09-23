@@ -1,11 +1,13 @@
 package com.zxd.www.po;
 
+import java.io.Serializable;
+
 /**
  * 学生信息实体类
  * @author Makonike
  * @date 2021-09-10 10:59
  **/
-public class Student {
+public class Student implements Serializable {
 
     private Integer studentId;
     /**

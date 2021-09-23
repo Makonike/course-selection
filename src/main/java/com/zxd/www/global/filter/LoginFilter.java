@@ -4,7 +4,7 @@ package com.zxd.www.global.filter;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.zxd.www.constant.JwtConstant;
-import com.zxd.www.global.po.JsonResponse;
+import com.zxd.www.global.dto.JsonResponse;
 import com.zxd.www.util.JwtUtils;
 
 import javax.servlet.*;
@@ -30,11 +30,7 @@ public class LoginFilter implements Filter {
         String uri = req.getRequestURI();
         String contextPath = req.getContextPath();
         String requestPath = null;
-        // 关键处, 跨域支持
-        resp.setHeader("Access-control-Allow-Origin", req.getHeader("Origin"));
-        resp.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS,PUT,DELETE");
-        resp.setHeader("Access-Control-Allow-Credentials", "true");
-        resp.setHeader("Access-Control-Allow-Headers", req.getHeader("Access-Control-Request-Headers"));
+
         // 获取请求路径
         if (contextPath != null && contextPath.length() > 0) {
             requestPath = uri.substring(contextPath.length());

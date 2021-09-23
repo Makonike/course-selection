@@ -1,7 +1,6 @@
 package com.zxd.www.util.mvc.bean;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 /**
  * 方法处理器
@@ -13,13 +12,11 @@ public class MappingHandler {
     private String uri;
     private Class<?> controllerClass;
     private Method method;
-    private  String[] args;
 
-    public MappingHandler(String uri, Class<?> controllerClass, Method method, String[] args) {
+    public MappingHandler(String uri, Class<?> controllerClass, Method method) {
         this.uri = uri;
         this.controllerClass = controllerClass;
         this.method = method;
-        this.args = args;
     }
 
     public Class<?> getControllerClass() {
@@ -46,21 +43,12 @@ public class MappingHandler {
         this.uri = uri;
     }
 
-    public String[] getArgs() {
-        return args;
-    }
-
-    public void setArgs(String[] args) {
-        this.args = args;
-    }
-
     @Override
     public String toString() {
         return "MappingHandler{" +
                 "uri='" + uri + '\'' +
-                ", controllerClass=" + controllerClass.getName() +
+                ", controllerClass=" + controllerClass +
                 ", method=" + method +
-                ", args=" + Arrays.toString(args) +
                 '}';
     }
 }
