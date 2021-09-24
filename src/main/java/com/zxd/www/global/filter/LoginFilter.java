@@ -49,8 +49,14 @@ public class LoginFilter implements Filter {
             // token验证通过，放行
             Claims claims = JwtUtils.verifyToken(token.get());
             if(claims != null){
-                req.setAttribute("userId", claims.get("id"));
-                chain.doFilter(req, resp);
+                if(FilterExcludeUrl.userAllowUrl.contains(requestPath)){
+                    req.setAttribute("userId", claims.get("id"));
+                    chain.doFilter(req, resp);
+                    return;
+                }
+                String jsonResponse = JSON.toJSONString(new JsonResponse().forbidden().message("权限不足"), SerializerFeature.WriteMapNullValue,
+                        SerializerFeature.WriteNullStringAsEmpty);
+                resp.getWriter().println(jsonResponse);
                 return;
             }
             // token失效,暂时只返回这个异常提示

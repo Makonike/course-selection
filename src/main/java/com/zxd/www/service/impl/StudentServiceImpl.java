@@ -62,6 +62,11 @@ public class StudentServiceImpl implements StudentService {
         return studentDao.getStudentByNo(studentNo);
     }
 
+    @Override
+    public Student getStudentByUserId(Integer userId) {
+        return studentDao.getStudentByUserId(userId);
+    }
+
     /**
      * 实现对学生姓名的模糊查询
      * @param studentName 学生姓名
@@ -80,4 +85,20 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> getStudentList() {
         return studentDao.getStudentList();
     }
+
+    @Override
+    public boolean addCourse(Integer userId, Integer courseId){
+        Student student = getStudentByUserId(userId);
+        student.setSelectedCourseCount(student.getSelectedCourseCount() + 1);
+        boolean a = updateStudent(student);
+        boolean b = addCourseForStudent(student.getStudentId(), courseId);
+        return a && b;
+    }
+
+    @Override
+    public boolean addCourseForStudent(Integer studentId, Integer courseId) {
+        int i = studentDao.insertConnStudentCourse(studentId, courseId);
+        return i != 0;
+    }
+
 }

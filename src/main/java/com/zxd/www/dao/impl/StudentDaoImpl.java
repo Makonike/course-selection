@@ -54,18 +54,28 @@ public class StudentDaoImpl extends BaseDao implements StudentDao {
     @Override
     public Student getStudentByNo(String studentNo) {
         //language=sql
-        String sql = " SELECT `student_id`, `student_no`, `student_name`, `student_sex` " +
+        String sql = " SELECT `student_id`,`user_id`, `student_no`, `student_name`, `student_sex` " +
                 " , `student_class_id`, `selected_course_count` " +
                 " FROM `t_student` " +
                 " WHERE `removed` = 0 " +
                 " AND `student_no` = ? ";
         return getOne(Student.class, sql, studentNo);
     }
+    @Override
+    public Student getStudentByUserId(Integer userId) {
+        //language=sql
+        String sql = " SELECT `student_id`,`user_id`, `student_no`, `student_name`, `student_sex` " +
+                " , `student_class_id`, `selected_course_count` " +
+                " FROM `t_student` " +
+                " WHERE `removed` = 0 " +
+                " AND `user_id` = ? ";
+        return getOne(Student.class, sql, userId);
+    }
 
     @Override
     public List<Student> getStudentByName(String studentName) {
         //language=sql
-        String sql = " SELECT `student_id`, `student_no`, `student_name`, `student_sex` " +
+        String sql = " SELECT `student_id`,`user_id`, `student_no`, `student_name`, `student_sex` " +
                 " , `student_class_id`, `selected_course_count` " +
                 " FROM `t_student` " +
                 " WHERE `removed` = 0 " +
@@ -76,11 +86,20 @@ public class StudentDaoImpl extends BaseDao implements StudentDao {
     @Override
     public List<Student> getStudentList() {
         //language=sql
-        String sql = " SELECT `student_id`, `student_no`, `student_name`, `student_sex` " +
+        String sql = " SELECT `student_id`,`user_id`, `student_no`, `student_name`, `student_sex` " +
                 " , `student_class_id`, `selected_course_count` " +
                 " FROM `t_student` " +
                 " WHERE `removed` = 0 " +
                 " ORDER BY `student_id` ASC ";
         return getList(Student.class, sql);
+    }
+
+    @Override
+    public int insertConnStudentCourse(Integer studentId, Integer courseId) {
+        //language=sql
+        String sql = " INSERT INTO `conn_student_course` " +
+                " (`student_id`, `course_id`)" +
+                " VALUES (?, ?) ";
+        return update(sql, studentId, courseId);
     }
 }

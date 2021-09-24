@@ -19,7 +19,13 @@ public interface StudentService {
 
     Student getStudentByNo(String studentNo);
 
+    Student getStudentByUserId(Integer userId);
+
     List<Student> getStudentByName(String studentName);
 
     List<Student> getStudentList();
+
+    boolean addCourse(Integer userId, Integer courseId);
+
+    boolean addCourseForStudent(Integer studentId, Integer courseId);
 }

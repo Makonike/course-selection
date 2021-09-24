@@ -88,4 +88,6 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
                 " ORDER BY `create_time` ASC ";
         return getList(Course.class, sql);
     }
+
+
 }

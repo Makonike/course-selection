@@ -19,8 +19,11 @@ public interface StudentDao {
 
     Student getStudentByNo(String studentNo);
 
+    Student getStudentByUserId(Integer userId);
+
     List<Student> getStudentByName(String studentName);
 
     List<Student> getStudentList();
 
+    int insertConnStudentCourse(Integer studentId, Integer courseId);
 }
