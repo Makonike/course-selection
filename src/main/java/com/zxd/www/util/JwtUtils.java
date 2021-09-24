@@ -1,6 +1,7 @@
 package com.zxd.www.util;
 
 import com.zxd.www.constant.JwtConstant;
+import com.zxd.www.po.Admin;
 import com.zxd.www.po.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -22,24 +23,13 @@ public class JwtUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    /**
-     * 生成jwt
-     * @param user user
-     * @return jwt
-     */
-    public static String generateJwt(User user){
+
+    public static String generateAllJwt(Map<String,Object> claims, String subject){
 
         // 可不设置 默认格式是{"alg":"HS256"}
         Map<String, Object> map = new HashMap<>(2);
         map.put(JwtConstant.ALG_KEY, JwtConstant.ALG_VALUE);
         map.put(JwtConstant.TYP_KEY, JwtConstant.TYP_VALUE);
-
-        // 载荷 map / Jwt的载荷，第二部分
-        Map<String,Object> claims = new HashMap<>(3);
-
-        // 私有声明 / 自定义数据，根据业务需要添加
-        claims.put(JwtConstant.CLAIMS_ID_KEY,user.getUserId());
-        claims.put(JwtConstant.CLAIMS_USERNAME_KEY, user.getUsername());
 
         // 自定义标准声明
         claims.put(JwtConstant.CLAIMS_ISS_KEY, JwtConstant.JWT_ISS);
@@ -64,10 +54,44 @@ public class JwtUtils {
                 .setIssuedAt(new Date())
                 // exp time
                 .setExpiration(new Date(System.currentTimeMillis() + JwtConstant.ACCESS_TOKEN_EXPIRATION))
-                .setSubject(JwtConstant.SUBJECT)
+                .setSubject(subject)
                 // sign
                 .signWith(JwtConstant.SIGNATURE_ALGORITHM, JwtConstant.PERSONAL_SECRET)
                 .compact();
+    }
+
+    /**
+     * 生成ADMIN-JWT
+     * @param admin admin
+     */
+    public static String generateAdminJwt(Admin admin) {
+
+        Map<String,Object> claims = new HashMap<>(3);
+
+        // 私有声明 / 自定义数据，根据业务需要添加
+        claims.put(JwtConstant.CLAIMS_ID_KEY,admin.getAdminId());
+        claims.put(JwtConstant.CLAIMS_USERNAME_KEY, admin.getAdminName());
+
+        return generateAllJwt(claims,JwtConstant.ADMIN_SUBJECT);
+    }
+
+
+    /**
+     * 生成USER-jwt
+     * @param user user
+     * @return jwt
+     */
+    public static String generateUserJwt(User user){
+
+        // 载荷 map / Jwt的载荷，第二部分
+        Map<String,Object> claims = new HashMap<>(3);
+
+        // TODO: userId和userName的加密和解密处理
+        // 私有声明 / 自定义数据，根据业务需要添加
+        claims.put(JwtConstant.CLAIMS_ID_KEY,user.getUserId());
+        claims.put(JwtConstant.CLAIMS_USERNAME_KEY, user.getUsername());
+
+        return generateAllJwt(claims, JwtConstant.USER_SUBJECT);
     }
 
     public static Claims parseToken(String token){
@@ -81,7 +105,7 @@ public class JwtUtils {
         } catch (ExpiredJwtException e){
             logger.info("--- token已失效，请重新登录！ ---");
         } catch (Exception e){
-            logger.info("--- token解析异常，用户认证失败！ ---");
+            logger.info("--- token解析异常，认证失败！ ---");
         }
         return claims;
     }

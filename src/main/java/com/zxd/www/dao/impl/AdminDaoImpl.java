@@ -18,9 +18,9 @@ public class AdminDaoImpl extends BaseDao implements AdminDao {
     public int insertAdmin(Admin admin) {
         //language=sql
         String sql = " INSERT INTO `t_admin` " +
-                " (`admin_name`, `admin_salt`, `admin_password`, `create_time`) " +
-                " VALUES(?, ?, ?, ?) ";
-        return update(sql, admin.getAdminName(), admin.getAdminSalt(), admin.getAdminPassword(), admin.getCreateTime());
+                " (`admin_name`, `admin_salt`, `admin_password`) " +
+                " VALUES(?, ?, ?) ";
+        return update(sql, admin.getAdminName(), admin.getAdminSalt(), admin.getAdminPassword());
     }
 
     @Override

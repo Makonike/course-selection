@@ -16,6 +16,7 @@ public class FilterExcludeUrl {
     static {
         pattenURL.add("/user/login");
         pattenURL.add("/user/register");
+        pattenURL.add("/admin/login");
         pattenURL.add("/");
         userAllowUrl.add("/student/add");
         userAllowUrl.add("/student/update");
@@ -24,5 +25,6 @@ public class FilterExcludeUrl {
         userAllowUrl.add("/course/name");
         userAllowUrl.add("/course/id");
         userAllowUrl.add("/course/getAll");
+        userAllowUrl.add("/course/name");
     }
 }

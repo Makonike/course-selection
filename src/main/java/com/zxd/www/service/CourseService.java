@@ -11,11 +11,11 @@ import java.util.List;
  **/
 public interface CourseService {
 
-    int addCourse(Course course);
+    boolean addCourse(Course course);
 
-    int updateCourse(Course course);
+    boolean updateCourse(Course course);
 
-    int deleteCourse(Integer courseId);
+    boolean deleteCourse(Integer courseId);
 
     Course getById(Integer courseId);
 

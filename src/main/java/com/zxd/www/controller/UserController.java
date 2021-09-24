@@ -33,7 +33,7 @@ public class UserController {
         if(userService.addUser(userName, password)){
             return new JsonResponse();
         }
-        return new JsonResponse().internalServerError().message("服务器异常，请联系管理员修复！");
+        return new JsonResponse().internalServerError().message("请求错误，请联系管理员修复！");
     }
 
     @RequestMapping(path = "/user/login", method = RequestMethodConstant.POST)
@@ -47,7 +47,7 @@ public class UserController {
             return new JsonResponse().unauthorized().message("密码错误！");
         }
         Map<String, Object> result = new HashMap<>(1);
-        String token = JwtUtils.generateJwt(user);
+        String token = JwtUtils.generateUserJwt(user);
         result.put("token", token);
         return new JsonResponse().data(result);
     }

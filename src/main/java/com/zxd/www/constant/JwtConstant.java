@@ -31,7 +31,12 @@ public class JwtConstant {
     /**
      * 所有人
      */
-    public final static String SUBJECT = "user";
+    public final static String USER_SUBJECT = "user";
+
+    /**
+     * 所有人
+     */
+    public final static String ADMIN_SUBJECT = "admin";
 
     /**
      * token前缀

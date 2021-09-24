@@ -10,7 +10,7 @@ import java.util.List;
  **/
 public interface AdminService {
 
-    boolean addAdmin(Admin admin);
+    boolean addAdmin(String adminName, String adminPassword);
 
     boolean updateAdmin(Admin admin);
 
@@ -20,5 +20,5 @@ public interface AdminService {
 
     List<Admin> getAdminList();
 
-
+    boolean isExists(String adminName);
 }

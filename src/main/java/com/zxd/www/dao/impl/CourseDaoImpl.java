@@ -21,12 +21,12 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
         //language=sql
         String sql = " INSERT INTO `t_course` " +
                 " (`course_name`, `course_type`, `teacher_name` , `course_time`" +
-                " , `course_position`, `course_credit`, `course_hour`, `create_time`" +
+                " , `course_position`, `course_credit`, `course_hour`" +
                 " , `course_desc`)" +
-                " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+                " VALUES(?, ?, ?, ?, ?, ?, ?, ?) ";
         return update(sql, course.getCourseName(), course.getCourseType(), course.getTeacherName()
                 , course.getCourseTime(), course.getCoursePosition(), course.getCourseCredit()
-                , course.getCourseHour(), course.getCreateTime(), course.getCourseDesc());
+                , course.getCourseHour(), course.getCourseDesc());
     }
 
     @Override

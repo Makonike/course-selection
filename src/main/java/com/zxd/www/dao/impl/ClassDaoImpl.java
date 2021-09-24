@@ -19,10 +19,9 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
     public int insertClass(Class clazz) {
         //language=sql
         String sql = " INSERT INTO `t_class` " +
-                " (`class_Name`, `institute_id`, `grade_id` , `createTime`)" +
-                " VALUES(?, ?, ?, ?) ";
-        return update(sql, clazz.getClassName(), clazz.getInstituteId(), clazz.getGradeId()
-                , clazz.getCreateTime());
+                " (`class_Name`, `institute_id`, `grade_id`)" +
+                " VALUES(?, ?, ?) ";
+        return update(sql, clazz.getClassName(), clazz.getInstituteId(), clazz.getGradeId());
     }
 
     @Override

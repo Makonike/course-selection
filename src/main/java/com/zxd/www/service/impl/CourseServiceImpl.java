@@ -20,18 +20,18 @@ public class CourseServiceImpl implements CourseService {
     CourseDao courseDao;
 
     @Override
-    public int addCourse(Course course) {
-        return courseDao.insertCourse(course);
+    public boolean addCourse(Course course) {
+        return courseDao.insertCourse(course) != 0;
     }
 
     @Override
-    public int updateCourse(Course course) {
-        return courseDao.updateCourse(course);
+    public boolean updateCourse(Course course) {
+        return courseDao.updateCourse(course) != 0;
     }
 
     @Override
-    public int deleteCourse(Integer courseId) {
-        return courseDao.deleteCourse(courseId);
+    public boolean deleteCourse(Integer courseId) {
+        return courseDao.deleteCourse(courseId) != 0;
     }
 
     @Override

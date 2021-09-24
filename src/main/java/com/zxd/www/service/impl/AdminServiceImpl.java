@@ -1,6 +1,7 @@
 package com.zxd.www.service.impl;
 
 import com.zxd.www.dao.AdminDao;
+import com.zxd.www.util.StringUtils;
 import com.zxd.www.util.ioc.annotation.Autowired;
 import com.zxd.www.util.ioc.annotation.Component;
 import com.zxd.www.po.Admin;
@@ -21,13 +22,23 @@ public class AdminServiceImpl implements AdminService {
 
     /**
      * 添加管理员
-     * @param admin admin
      * @return true-成功 false-失败
      */
     @Override
-    public boolean addAdmin(Admin admin) {
-        int i = adminDao.insertAdmin(admin);
-        return i != 0;
+    public boolean addAdmin(String adminName, String adminPassword) {
+        Admin admin = new Admin();
+        admin.setAdminName(adminName);
+        String salt = StringUtils.generateSalt();
+        adminPassword = StringUtils.addSaltPassword(adminPassword, salt);
+        admin.setAdminPassword(adminPassword);
+        admin.setAdminSalt(salt);
+        return adminDao.insertAdmin(admin) != 0;
+    }
+
+    @Override
+    public boolean isExists(String adminName) {
+        Admin admin = adminDao.getAdminByName(adminName);
+        return admin != null;
     }
 
     /**

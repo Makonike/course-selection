@@ -49,6 +49,10 @@ public class LoginFilter implements Filter {
             // token验证通过，放行
             Claims claims = JwtUtils.verifyToken(token.get());
             if(claims != null){
+                if(JwtConstant.ADMIN_SUBJECT.equals(claims.getSubject())){
+                    chain.doFilter(req, resp);
+                    return;
+                }
                 if(FilterExcludeUrl.userAllowUrl.contains(requestPath)){
                     req.setAttribute("userId", claims.get("id"));
                     chain.doFilter(req, resp);
