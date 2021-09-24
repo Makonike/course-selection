@@ -77,6 +77,13 @@ public class ParserHandler {
      */
     private Object parseRequestParam(Parameter parameter){
         String paramName = parameter.getAnnotation(RequestParam.class).value();
+        if (Integer.class.equals(parameter.getType())){
+            return Integer.valueOf(request.getParameter(paramName));
+        } else if (Double.class.equals(parameter.getType())){
+            return Double.valueOf(request.getParameter(paramName));
+        } else if (Long.class.equals(parameter.getType())){
+            return Long.valueOf(request.getParameter(paramName));
+        }
         return request.getParameter(paramName);
     }
 

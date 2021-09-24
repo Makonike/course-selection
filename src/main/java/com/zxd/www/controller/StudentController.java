@@ -50,11 +50,9 @@ public class StudentController {
 
     /**
      * 删除学生信息
-     * @param studentIdString 学生id
      */
     @RequestMapping(path = "/student",method = RequestMethodConstant.DELETE)
-    public JsonResponse deleteById(@RequestParam("studentId") String studentIdString) {
-        Integer studentId = Integer.valueOf(studentIdString);
+    public JsonResponse deleteById(@RequestParam("studentId") Integer studentId) {
         if(studentService.deleteStudent(studentId)){
             return new JsonResponse();
         }
@@ -73,7 +71,7 @@ public class StudentController {
             Student byNo = studentService.getStudentByNo(student.getStudentNo());
             return new JsonResponse();
         }
-        return new JsonResponse().badRequest().message("服务器错误，添加信息失败！");
+        return new JsonResponse().badRequest().message("请求错误，添加信息失败！");
     }
 
     /**
@@ -86,7 +84,7 @@ public class StudentController {
         if(b){
             return new JsonResponse();
         }
-        return new JsonResponse().badRequest().message("服务器错误，更新信息失败！");
+        return new JsonResponse().badRequest().message("请求错误，更新信息失败！");
     }
 
     /**
@@ -105,12 +103,10 @@ public class StudentController {
 
     /**
      * 学生选课
-     * @param courseIdString 课程号
      * @param request 请求
      */
     @RequestMapping(path = "/student/select", method = RequestMethodConstant.POST)
-    public JsonResponse selectCourse(@RequestParam("courseId") String courseIdString, HttpServletRequest request){
-        Integer courseId = Integer.valueOf(courseIdString);
+    public JsonResponse selectCourse(@RequestParam("courseId") Integer courseId, HttpServletRequest request){
         Integer userId = (Integer) request.getAttribute("userId");
         boolean b = studentService.addCourse(userId, courseId);
         if(b){
