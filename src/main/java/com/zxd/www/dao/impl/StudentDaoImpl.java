@@ -18,9 +18,9 @@ public class StudentDaoImpl extends BaseDao implements StudentDao {
     public int insertStudent(Student student) {
         //language=sql
         String sql = " INSERT INTO `t_student` " +
-                " (`student_no`, `student_name`, `student_sex` , `student_class_id`)" +
-                " VALUES(?, ?, ?, ?)";
-        return update(sql, student.getStudentNo(), student.getStudentName(), student.getStudentSex()
+                " (`user_id`, `student_no`, `student_name`, `student_sex` , `student_class_id`)" +
+                " VALUES(?, ?, ?, ?, ?)";
+        return update(sql, student.getUserId(), student.getStudentNo(), student.getStudentName(), student.getStudentSex()
         , student.getStudentClassId());
     }
 

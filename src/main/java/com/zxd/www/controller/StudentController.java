@@ -10,6 +10,8 @@ import com.zxd.www.util.mvc.annotation.RequestMapping;
 import com.zxd.www.util.mvc.annotation.RequestParam;
 import com.zxd.www.util.mvc.constant.RequestMethodConstant;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author Makonike
  * @date 2021-09-20 16:43
@@ -30,7 +32,6 @@ public class StudentController {
         return new JsonResponse().data(studentService.getStudentByNo(studentNo));
     }
 
-
     @RequestMapping(path = "/student/name")
     public JsonResponse findByStudentName(@RequestParam("studentName") String studentName) {
         return new JsonResponse().data(studentService.getStudentByName(studentName));
@@ -45,7 +46,8 @@ public class StudentController {
     }
 
     @RequestMapping(path = "/student/add", method = RequestMethodConstant.POST)
-    public JsonResponse addStudent(@RequestBody("student")Student student){
+    public JsonResponse addStudent(@RequestBody("student")Student student, HttpServletRequest request){
+        student.setUserId((Integer) request.getAttribute("userId"));
         if(studentService.addStudent(student)){
             return new JsonResponse();
         }

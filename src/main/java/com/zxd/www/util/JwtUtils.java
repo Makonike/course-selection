@@ -86,9 +86,8 @@ public class JwtUtils {
         return claims;
     }
 
-    public static boolean verifyToken(String token){
-        Claims claims = parseToken(token);
-        return claims != null;
+    public static Claims verifyToken(String token){
+        return parseToken(token);
     }
 
 

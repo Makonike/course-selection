@@ -97,6 +97,14 @@ public class Student implements Serializable {
         this.removed = removed;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Student{" +

@@ -49,10 +49,12 @@ public class ParserHandler {
         // 过滤请求和响应
         List<Parameter> parameters = Arrays
                 .stream(method.getParameters())
-                .filter((parameter) -> !parameter.getType().equals(HttpServletRequest.class) && !parameter.getType().equals(HttpServletResponse.class))
                 .collect(Collectors.toList());
         List<Object> resultParams = new ArrayList<>();
         for (Parameter parameter : parameters) {
+            if(parameter.getType().equals(HttpServletRequest.class)){
+                resultParams.add(request);
+            }
             // 解析json参数
             if(parameter.isAnnotationPresent(RequestBody.class)){
                 RequestWrapper requestWrapper = new RequestWrapper(request);

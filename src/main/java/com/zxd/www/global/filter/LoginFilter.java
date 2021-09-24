@@ -6,6 +6,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.zxd.www.constant.JwtConstant;
 import com.zxd.www.global.dto.JsonResponse;
 import com.zxd.www.util.JwtUtils;
+import io.jsonwebtoken.Claims;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -46,8 +47,10 @@ public class LoginFilter implements Filter {
         // 带有token
         if(token.isPresent()){
             // token验证通过，放行
-            if(JwtUtils.verifyToken(token.get())){
-                chain.doFilter(request, response);
+            Claims claims = JwtUtils.verifyToken(token.get());
+            if(claims != null){
+                req.setAttribute("userId", claims.get("id"));
+                chain.doFilter(req, resp);
                 return;
             }
             // token失效,暂时只返回这个异常提示
@@ -62,7 +65,7 @@ public class LoginFilter implements Filter {
     }
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig){
     }
 
     @Override
