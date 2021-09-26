@@ -22,9 +22,10 @@ public class FilterExcludeUrl {
         userAllowUrl.add("/student/update");
         userAllowUrl.add("/student/id");
         userAllowUrl.add("/student/select");
-        userAllowUrl.add("/course/name");
-        userAllowUrl.add("/course/id");
+        userAllowUrl.add("/student/cancel");
+        userAllowUrl.add("/student/course");
         userAllowUrl.add("/course/getAll");
         userAllowUrl.add("/course/name");
+        userAllowUrl.add("/course/check");
     }
 }

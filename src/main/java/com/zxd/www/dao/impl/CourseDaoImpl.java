@@ -4,6 +4,7 @@ import com.zxd.www.dao.BaseDao;
 import com.zxd.www.dao.CourseDao;
 import com.zxd.www.po.Class;
 import com.zxd.www.po.Course;
+import com.zxd.www.po.CourseDel;
 import com.zxd.www.po.Student;
 import com.zxd.www.util.ioc.annotation.Component;
 
@@ -87,6 +88,68 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
                 " WHERE `removed` = 0 " +
                 " ORDER BY `create_time` ASC ";
         return getList(Course.class, sql);
+    }
+
+    @Override
+    public List<CourseDel> getCourseDelList(){
+        //language=sql
+        String sql = " SELECT `coursedel_id`, `course_id`, `course_name`, `start_time` " +
+                " , `exp_time`, `max_num`, `now_num`, `coursedel_desc`, `status`" +
+                " FROM `t_coursedel` " +
+                " ORDER BY `start_time` ASC ";
+        return getList(CourseDel.class, sql);
+    }
+
+    @Override
+    public CourseDel getCourseDelById(Integer courseDelId){
+        //language=sql
+        String sql = " SELECT `coursedel_id`, `course_id`, `course_name`, `start_time` " +
+                " , `exp_time`, `max_num`, `now_num`, `coursedel_desc`, `status`" +
+                " FROM `t_coursedel` " +
+                " WHERE `coursedel_id` = ? " +
+                " ORDER BY `start_time` ASC ";
+        return getOne(CourseDel.class, sql, courseDelId);
+    }
+
+    @Override
+    public int expCourseDel(Integer courseDelId){
+        //language=sql
+        String sql = " UPDATE `t_coursedel` " +
+                " SET `status` = 1 " +
+                " WHERE `coursedel_id` = ? " +
+                " AND `status` = 0 ";
+        return update(sql, courseDelId);
+    }
+
+
+    @Override
+    public int incrCourseDelNum(Integer courseDelId){
+        //language=sql
+        String sql = " UPDATE `t_coursedel` " +
+                " SET `now_num` = `now_num` + 1 " +
+                " WHERE `status` = 0 " +
+                " AND  `coursedel_id` = ? ";
+        return update(sql, courseDelId);
+    }
+
+    @Override
+    public int decrCourseDelNum(Integer courseDelId){
+        //language=sql
+        String sql = " UPDATE `t_coursedel` " +
+                " SET `now_num` = `now_num` - 1 " +
+                " WHERE `status` = 0 " +
+                " AND  `coursedel_id` = ? ";
+        return update(sql, courseDelId);
+    }
+
+    @Override
+    public List<Integer> getAllCourseByStudentId(Integer studentId){
+        //language=sql
+        String sql = " SELECT `course_id` " +
+                " FROM `conn_student_course` " +
+                " WHERE `student_id` = ? ";
+        return getValue(Integer.class, sql, studentId);
+
     }
 
 

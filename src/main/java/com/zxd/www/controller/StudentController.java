@@ -2,6 +2,7 @@ package com.zxd.www.controller;
 
 import com.zxd.www.global.dto.JsonResponse;
 import com.zxd.www.po.Student;
+import com.zxd.www.service.CourseService;
 import com.zxd.www.service.StudentService;
 import com.zxd.www.util.ioc.annotation.Autowired;
 import com.zxd.www.util.mvc.annotation.Controller;
@@ -20,7 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 public class StudentController {
 
     @Autowired
-    StudentService studentService;
+    private StudentService studentService;
+
+    @Autowired
+    private CourseService courseService;
 
     /**
      * 获取所有学生信息
@@ -106,13 +110,42 @@ public class StudentController {
      * @param request 请求
      */
     @RequestMapping(path = "/student/select", method = RequestMethodConstant.POST)
-    public JsonResponse selectCourse(@RequestParam("courseId") Integer courseId, HttpServletRequest request){
+    public JsonResponse selectCourse(@RequestParam("courseDelId") Integer courseDelId, HttpServletRequest request){
         Integer userId = (Integer) request.getAttribute("userId");
-        boolean b = studentService.addCourse(userId, courseId);
+        boolean b = studentService.addCourse(userId, courseDelId);
         if(b){
             return new JsonResponse();
         }
-        return new JsonResponse().notFound().message("选课失败！");
+        return new JsonResponse().notFound().message("人数已满，选课失败！");
+    }
+
+    /**
+     * 取消选课
+     * @param courseDelId 选课信息id
+     * @param request 请求
+     */
+    @RequestMapping(path = "/student/cancel", method = RequestMethodConstant.POST)
+    public JsonResponse cancelCourse(@RequestParam("courseDelId") Integer courseDelId, HttpServletRequest request){
+        Integer userId = (Integer) request.getAttribute("userId");
+        boolean b = studentService.cancelCourse(userId, courseDelId);
+        if(b) {
+            return new JsonResponse();
+        }
+        return new JsonResponse().badRequest().message("选课已过期，选课失败");
+    }
+
+    /**
+     * 获取当前用户已选课的课程号列表
+     * @param request 请求
+     */
+    @RequestMapping(path = "/student/course")
+    public JsonResponse getAllCourseOfStudent(HttpServletRequest request){
+        Integer userId = (Integer) request.getAttribute("userId");
+        Student student = studentService.getStudentByUserId(userId);
+        if(null == student){
+            return new JsonResponse().notFound().message("当前用户未绑定信息");
+        }
+        return new JsonResponse().data(courseService.getAllCourseByStudentId(student.getStudentId()));
     }
 
 }

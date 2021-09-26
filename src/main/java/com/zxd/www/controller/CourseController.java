@@ -22,9 +22,13 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @RequestMapping(path = "/course/getAll")
-    public JsonResponse getAll(){
-        List<Course> courses = courseService.getAll();
+    /**
+     * 获取所有课程列表
+     */
+    @RequestMapping(path = "/course/getCourseAll")
+    public JsonResponse getCourseAll(){
+        List<Course> courses = courseService.getCourseAll();
+        System.out.println(courses);
         return new JsonResponse().data(courses);
     }
 
@@ -38,16 +42,10 @@ public class CourseController {
         return new JsonResponse().data(courses);
     }
 
-    @RequestMapping(path = "/course/id")
-    public JsonResponse getById(@RequestParam("courseId") String courseIdString){
-        Integer courseId = Integer.valueOf(courseIdString);
-        Course course = courseService.getById(courseId);
-        if(course != null){
-            return new JsonResponse().data(course);
-        }
-        return new JsonResponse().notFound().message("未找到该课程");
-    }
-
+    /**
+     * 添加课程
+     * @param course 课程信息
+     */
     @RequestMapping(path = "/course/add", method = RequestMethodConstant.POST)
     public JsonResponse addCourse(@RequestBody("course") Course course){
         if(courseService.addCourse(course)){
@@ -56,7 +54,10 @@ public class CourseController {
         return new JsonResponse().badRequest().message("请求错误，添加课程信息失败！");
     }
 
-
+    /**
+     * 更新课程
+     * @param course 课程信息
+     */
     @RequestMapping(path = "/course/update", method = RequestMethodConstant.PUT)
     public JsonResponse updateCourse(@RequestBody("course") Course course){
         if(courseService.updateCourse(course)){
@@ -66,6 +67,10 @@ public class CourseController {
 
     }
 
+    /**
+     * 删除课程
+     * @param courseId 课程号
+     */
     @RequestMapping(path = "/course/delete", method = RequestMethodConstant.DELETE)
     public JsonResponse deleteCourse(@RequestParam("courseId") Integer courseId){
         if(courseService.deleteCourse(courseId)){
@@ -73,6 +78,23 @@ public class CourseController {
         }
         return new JsonResponse().badRequest().message("请求错误，删除课程信息失败！");
 
+    }
+
+    /**
+     * 获取所有选课信息
+     */
+    @RequestMapping(path = "/course/getAll")
+    public JsonResponse getCourseDelAll(){
+        return new JsonResponse().data(courseService.getCourseDelAll());
+    }
+
+    /**
+     * 查看课程详情
+     * @param courseId 课程号
+     */
+    @RequestMapping(path = "/course/check")
+    public JsonResponse checkCourseDel(@RequestParam("courseId") Integer courseId ){
+        return new JsonResponse().data(courseService.getById(courseId));
     }
 
 }

@@ -29,7 +29,7 @@ import java.util.Properties;
  * @author Makonike
  * @date 2021-09-17 21:54
  **/
-@WebServlet(urlPatterns = "/", loadOnStartup = 0)
+@WebServlet(urlPatterns = "/*", loadOnStartup = 0)
 public class DispatcherController extends HttpServlet {
 
     @Override

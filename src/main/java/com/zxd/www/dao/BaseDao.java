@@ -153,7 +153,8 @@ public abstract class BaseDao {
      * @param args args
      * @return object
      */
-    public Object getValue(String sql,Object...args){
+    @SuppressWarnings("all")
+    public <T> List<T> getValue(Class<T> clazz, String sql,Object...args){
         Connection conn = JdbcUtils.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -162,16 +163,19 @@ public abstract class BaseDao {
             for(int i = 0;i < args.length;i++){
                 ps.setObject(i + 1, args[i]);
             }
+
+            ArrayList<T> list = new ArrayList<>();
+            // 执行查询语句
             rs = ps.executeQuery();
-            if(rs.next()){
-                return rs.getObject(1);
+            while (rs.next()){
+                list.add((T) rs.getObject(1));
             }
+            return list;
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoException("预编译更新语句异常：" + sql, e);
         }finally{
             JdbcUtils.close(rs,ps,conn);
         }
-        return null;
     }
 }

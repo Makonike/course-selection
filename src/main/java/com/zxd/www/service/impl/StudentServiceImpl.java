@@ -1,6 +1,8 @@
 package com.zxd.www.service.impl;
 
 import com.zxd.www.dao.StudentDao;
+import com.zxd.www.po.CourseDel;
+import com.zxd.www.service.CourseService;
 import com.zxd.www.util.ioc.annotation.Autowired;
 import com.zxd.www.util.ioc.annotation.Component;
 import com.zxd.www.po.Student;
@@ -19,6 +21,8 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentDao studentDao;
 
+    @Autowired
+    CourseService courseService;
     /**
      * 插入学生信息
      * @param student student
@@ -86,13 +90,38 @@ public class StudentServiceImpl implements StudentService {
         return studentDao.getStudentList();
     }
 
+    /**
+     * 添加选课
+     * @param userId 当前用户
+     * @param courseDelId 选课信息id
+     */
     @Override
-    public boolean addCourse(Integer userId, Integer courseId){
+    public boolean addCourse(Integer userId, Integer courseDelId){
         Student student = getStudentByUserId(userId);
-        student.setSelectedCourseCount(student.getSelectedCourseCount() + 1);
-        boolean a = updateStudent(student);
-        boolean b = addCourseForStudent(student.getStudentId(), courseId);
-        return a && b;
+        if(student == null){
+            return false;
+        }
+        // 获取选课信息
+        CourseDel courseDel = courseService.getCourseDelById(courseDelId);
+        if(courseDel == null){
+            return false;
+        }
+        // 判断是否可以选课
+        boolean isValid = courseService.validCanNotSelectCourse(courseDel);
+        if(!isValid){
+            return false;
+        }
+        //添加关联表关系
+        boolean b = addCourseForStudent(student.getStudentId(), courseDel.getCourseId());
+        if(!b){
+            return false;
+        }
+        // 使该学生选课数+1
+        int a = studentDao.incrStudentCourse(student.getStudentId());
+
+        // 使该选课信息已选人数+1
+        boolean c = courseService.addCourseForCourseDel(courseDelId);
+        return a != 0 && c;
     }
 
     @Override
@@ -100,5 +129,50 @@ public class StudentServiceImpl implements StudentService {
         int i = studentDao.insertConnStudentCourse(studentId, courseId);
         return i != 0;
     }
+
+    @Override
+    public boolean cancelCourseForStudent(Integer studentId, Integer courseId) {
+        int i = studentDao.cancelConnStudentCourse(studentId, courseId);
+        return i != 0;
+    }
+
+
+    @Override
+    public boolean cancelCourse(Integer userId, Integer courseDelId){
+
+        Student student = getStudentByUserId(userId);
+        if(student == null){
+            return false;
+        }
+
+        // 获取选课信息
+        CourseDel courseDel = courseService.getCourseDelById(courseDelId);
+        if(courseDel == null){
+            return false;
+        }
+
+        // 判断是否可以取消选课
+        boolean isValid = courseService.validCanNotCancelCourse(courseDel);
+        if(!isValid){
+            return false;
+        }
+
+        //删除关联表关系
+        boolean b = cancelCourseForStudent(student.getStudentId(), courseDel.getCourseId());
+        if(!b){
+            return false;
+        }
+
+        // 使该学生选课数-1
+        int a = studentDao.decrStudentCourse(student.getStudentId());
+
+        // 使该选课信息已选人数-1
+        boolean c = courseService.cancelCourseForCourseDel(courseDelId);
+
+        return a != 0 && c;
+    }
+
+
+
 
 }

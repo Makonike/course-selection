@@ -26,4 +26,10 @@ public interface StudentDao {
     List<Student> getStudentList();
 
     int insertConnStudentCourse(Integer studentId, Integer courseId);
+
+    int cancelConnStudentCourse(Integer studentId, Integer courseId);
+
+    int incrStudentCourse(Integer studentId);
+
+    int decrStudentCourse(Integer studentId);
 }

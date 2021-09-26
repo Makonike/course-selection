@@ -14,6 +14,12 @@ public class CourseDel {
      * 课程id
      */
     private Integer courseId;
+
+    /**
+     * 课程名
+     */
+    private String courseName;
+
     /**
      * 开始选课时间
      */
@@ -42,9 +48,10 @@ public class CourseDel {
     public CourseDel() {
     }
 
-    public CourseDel(Integer coursedelId, Integer courseId, LocalDateTime startTime, LocalDateTime expTime, Integer maxNum, Integer nowNum, String coursedelDesc, Integer status) {
+    public CourseDel(Integer coursedelId, Integer courseId, String courseName, LocalDateTime startTime, LocalDateTime expTime, Integer maxNum, Integer nowNum, String coursedelDesc, Integer status) {
         this.coursedelId = coursedelId;
         this.courseId = courseId;
+        this.courseName = courseName;
         this.startTime = startTime;
         this.expTime = expTime;
         this.maxNum = maxNum;
@@ -59,6 +66,14 @@ public class CourseDel {
 
     public void setCoursedelId(Integer coursedelId) {
         this.coursedelId = coursedelId;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     public Integer getCourseId() {
@@ -122,6 +137,7 @@ public class CourseDel {
         return "CourseDel{" +
                 "coursedelId=" + coursedelId +
                 ", courseId=" + courseId +
+                ", courseName='" + courseName + '\'' +
                 ", startTime=" + startTime +
                 ", expTime=" + expTime +
                 ", maxNum=" + maxNum +

@@ -25,7 +25,11 @@ public interface StudentService {
 
     List<Student> getStudentList();
 
-    boolean addCourse(Integer userId, Integer courseId);
+    boolean addCourse(Integer userId, Integer courseDelId);
+
+    boolean cancelCourse(Integer userId, Integer courseDelId);
 
     boolean addCourseForStudent(Integer studentId, Integer courseId);
+
+    boolean cancelCourseForStudent(Integer studentId, Integer courseId);
 }

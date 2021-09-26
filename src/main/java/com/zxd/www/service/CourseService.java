@@ -1,6 +1,7 @@
 package com.zxd.www.service;
 
 import com.zxd.www.po.Course;
+import com.zxd.www.po.CourseDel;
 
 import java.util.List;
 
@@ -21,6 +22,20 @@ public interface CourseService {
 
     List<Course> getByName(String courseName);
 
-    List<Course> getAll();
+    List<Course> getCourseAll();
+
+    CourseDel getCourseDelById(Integer courseDelId);
+
+    boolean validCanNotSelectCourse(CourseDel courseDel);
+
+    boolean addCourseForCourseDel(Integer courseDelId);
+
+    List<CourseDel> getCourseDelAll();
+
+    boolean validCanNotCancelCourse(CourseDel courseDel);
+
+    boolean cancelCourseForCourseDel(Integer courseDelId);
+
+    List<Integer> getAllCourseByStudentId(Integer studentId);
 
 }

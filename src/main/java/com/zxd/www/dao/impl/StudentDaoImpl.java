@@ -97,9 +97,40 @@ public class StudentDaoImpl extends BaseDao implements StudentDao {
     @Override
     public int insertConnStudentCourse(Integer studentId, Integer courseId) {
         //language=sql
-        String sql = " INSERT INTO `conn_student_course` " +
+        String sql = " INSERT IGNORE INTO `conn_student_course` " +
                 " (`student_id`, `course_id`)" +
                 " VALUES (?, ?) ";
         return update(sql, studentId, courseId);
     }
+
+    @Override
+    public int cancelConnStudentCourse(Integer studentId, Integer courseId) {
+        //language=sql
+        String sql = " DELETE " +
+                " FROM `conn_student_course` " +
+                " WHERE `student_id` = ? " +
+                " AND `course_id` = ? ";
+        return update(sql, studentId, courseId);
+    }
+
+    @Override
+    public int incrStudentCourse(Integer studentId){
+        //language=sql
+        String sql = " UPDATE `t_student` " +
+                " SET `selected_course_count` = `selected_course_count` + 1 " +
+                " WHERE `removed` = 0 " +
+                " AND `student_id` = ? ";
+        return update(sql, studentId);
+    }
+
+    @Override
+    public int decrStudentCourse(Integer studentId){
+        //language=sql
+        String sql = " UPDATE `t_student` " +
+                " SET `selected_course_count` = `selected_course_count` - 1 " +
+                " WHERE `removed` = 0 " +
+                " AND `student_id` = ? ";
+        return update(sql, studentId);
+    }
+
 }
