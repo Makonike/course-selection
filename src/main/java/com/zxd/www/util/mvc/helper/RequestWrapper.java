@@ -5,6 +5,7 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author Makonike
@@ -20,7 +21,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         try {
             InputStream inputStream = request.getInputStream();
             if (inputStream != null) {
-                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
                 char[] charBuffer = new char[128];
                 int bytesRead;
                 while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {

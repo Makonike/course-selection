@@ -35,6 +35,10 @@ public class DispatcherController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=utf-8");
+
         // 请求的方法
         String requestMethod = req.getMethod().toLowerCase(Locale.ENGLISH);
         // 请求uri
@@ -59,8 +63,6 @@ public class DispatcherController extends HttpServlet {
             try {
                 // 调用方法
                 JsonResponse invoke = (JsonResponse) handler.getMethod().invoke(controllerBean, parser.getParams());
-                resp.setCharacterEncoding("UTF-8");
-                resp.setContentType("text/html;charset=utf-8");
                 // 转为json字符串
                 String jsonResponse = JSON.toJSONString(invoke, SerializerFeature.WriteMapNullValue,
                         SerializerFeature.WriteNullStringAsEmpty);
