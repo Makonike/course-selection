@@ -1,6 +1,8 @@
 package com.zxd.www.service;
 
 import com.zxd.www.po.Class;
+import com.zxd.www.po.Grade;
+import com.zxd.www.po.Institute;
 
 import java.util.List;
 
@@ -20,4 +22,11 @@ public interface ClassService {
     Class getById(Integer classId);
 
     List<Class> getAll();
+
+    List<Institute> getAllInstitute();
+
+    List<Grade> getAllGrade();
+
+    List<Class> getAllClass(Integer instituteId, Integer gradeId);
+
 }

@@ -1,8 +1,7 @@
 package com.zxd.www.dao;
 
+import com.zxd.www.po.*;
 import com.zxd.www.po.Class;
-import com.zxd.www.po.Course;
-import com.zxd.www.po.Student;
 
 import java.util.List;
 
@@ -21,4 +20,10 @@ public interface ClassDao {
     Class getClassByClassId(Integer classId);
 
     List<Class> getClassList();
+
+    List<Institute> getInstituteList();
+
+    List<Grade> getGradeList();
+
+    List<Class> getClassList(Integer instituteId, Integer gradeId);
 }

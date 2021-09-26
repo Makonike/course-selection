@@ -20,12 +20,18 @@ public class FilterExcludeUrl {
         pattenURL.add("/");
         userAllowUrl.add("/student/add");
         userAllowUrl.add("/student/update");
-        userAllowUrl.add("/student/id");
+        userAllowUrl.add("/student/info");
         userAllowUrl.add("/student/select");
         userAllowUrl.add("/student/cancel");
         userAllowUrl.add("/student/course");
+
         userAllowUrl.add("/course/getAll");
         userAllowUrl.add("/course/name");
         userAllowUrl.add("/course/check");
+
+        userAllowUrl.add("/class/ins/all");
+        userAllowUrl.add("/class/gra/all");
+        userAllowUrl.add("/class/cls/all");
+        userAllowUrl.add("/class/cls/id");
     }
 }

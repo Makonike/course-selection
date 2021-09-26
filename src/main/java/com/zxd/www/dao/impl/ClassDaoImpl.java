@@ -3,6 +3,8 @@ package com.zxd.www.dao.impl;
 import com.zxd.www.dao.BaseDao;
 import com.zxd.www.dao.ClassDao;
 import com.zxd.www.po.Class;
+import com.zxd.www.po.Grade;
+import com.zxd.www.po.Institute;
 import com.zxd.www.po.Student;
 import com.zxd.www.util.ioc.annotation.Component;
 
@@ -65,5 +67,31 @@ public class ClassDaoImpl extends BaseDao implements ClassDao {
                 " WHERE `removed` = 0 " +
                 " ORDER BY `create_time` ASC ";
         return getList(Class.class, sql);
+    }
+
+    @Override
+    public List<Institute> getInstituteList() {
+        //language=sql
+        String sql = " SELECT `institute_id`, `institute_name`, `institute_desc` " +
+                " FROM `t_institute` ";
+        return getList(Institute.class, sql);
+    }
+
+    @Override
+    public List<Grade> getGradeList() {
+        //language=sql
+        String sql = " SELECT `grade_id`, `grade_name`, `grade_desc`" +
+                " FROM `t_grade` ";
+        return getList(Grade.class, sql);
+    }
+
+    @Override
+    public List<Class> getClassList(Integer instituteId, Integer gradeId) {
+        //language=sql
+        String sql = " SELECT `class_id`, `class_name` " +
+                " FROM `t_class` " +
+                " WHERE `institute_id` = ? " +
+                " AND `grade_id` = ? ";
+        return getList(Class.class, sql, instituteId, gradeId);
     }
 }

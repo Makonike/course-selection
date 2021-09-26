@@ -95,11 +95,11 @@ public class StudentController {
      * 获取当前登录的用户的学生信息
      * @param request 请求
      */
-    @RequestMapping(path = "/student/id")
+    @RequestMapping(path = "/student/info")
     public JsonResponse getById(HttpServletRequest request){
         Integer userId = (Integer) request.getAttribute("userId");
         Student student = studentService.getStudentByUserId(userId);
-        if(student.getStudentId() != null){
+        if(student != null){
             return new JsonResponse().data(student);
         }
         return new JsonResponse().notFound().message("该用户还没有创建学生信息！");
