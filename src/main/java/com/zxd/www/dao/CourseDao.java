@@ -36,4 +36,8 @@ public interface CourseDao {
 
     List<Integer> getAllCourseByStudentId(Integer studentId);
 
+    int deleteCourseDel(Integer courseDelId);
+
+    int updateCourseDel(CourseDel courseDel);
+
 }

@@ -2,6 +2,7 @@ package com.zxd.www.controller;
 
 import com.zxd.www.global.dto.JsonResponse;
 import com.zxd.www.po.Course;
+import com.zxd.www.po.CourseDel;
 import com.zxd.www.service.CourseService;
 import com.zxd.www.util.ioc.annotation.Autowired;
 import com.zxd.www.util.mvc.annotation.Controller;
@@ -28,7 +29,6 @@ public class CourseController {
     @RequestMapping(path = "/course/getCourseAll")
     public JsonResponse getCourseAll(){
         List<Course> courses = courseService.getCourseAll();
-        System.out.println(courses);
         return new JsonResponse().data(courses);
     }
 
@@ -83,7 +83,7 @@ public class CourseController {
     /**
      * 获取所有选课信息
      */
-    @RequestMapping(path = "/course/getAll")
+    @RequestMapping(path = "/course/del/getAll")
     public JsonResponse getCourseDelAll(){
         return new JsonResponse().data(courseService.getCourseDelAll());
     }
@@ -93,8 +93,36 @@ public class CourseController {
      * @param courseId 课程号
      */
     @RequestMapping(path = "/course/check")
-    public JsonResponse checkCourseDel(@RequestParam("courseId") Integer courseId ){
+    public JsonResponse checkCourseDel(@RequestParam("courseId") Integer courseId){
         return new JsonResponse().data(courseService.getById(courseId));
     }
 
+    /**
+     * 删除选课信息
+     * @param courseDelId 选课id
+     */
+    @RequestMapping(path = "/course/del/delete", method = RequestMethodConstant.DELETE)
+    public JsonResponse deleteCourseDel(@RequestParam("courseDelId") Integer courseDelId){
+        if(courseService.deleteCourseDel(courseDelId)){
+            return new JsonResponse();
+        }
+        return new JsonResponse().notFound().message("删除选课失败！");
+    }
+
+    /**
+     * 根据选课id获取选课信息
+     * @param courseDelId 选课id
+     */
+    @RequestMapping(path = "/course/del/id")
+    public JsonResponse getCourseDelById(@RequestParam("courseDelId") Integer courseDelId){
+        return new JsonResponse().data(courseService.getCourseDelById(courseDelId));
+    }
+
+    @RequestMapping(path = "/course/del/update", method = RequestMethodConstant.PUT)
+    public JsonResponse updateCourseDel(@RequestBody("courseDel")CourseDel courseDel){
+        if(courseService.updateCourseDel(courseDel)){
+            return new JsonResponse();
+        }
+        return new JsonResponse().badRequest().message("更新选课信息失败");
+    }
 }

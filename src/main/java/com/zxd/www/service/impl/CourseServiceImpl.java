@@ -112,4 +112,13 @@ public class CourseServiceImpl implements CourseService {
         return courseDao.getCourseDelList();
     }
 
+    @Override
+    public boolean deleteCourseDel(Integer courseDelId){
+        return courseDao.deleteCourseDel(courseDelId) != 0;
+    }
+
+    @Override
+    public boolean updateCourseDel(CourseDel courseDel) {
+        return courseDao.updateCourseDel(courseDel) != 0;
+    }
 }

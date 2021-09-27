@@ -152,5 +152,25 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 
     }
 
+    @Override
+    public int deleteCourseDel(Integer courseDelId){
+        //language=sql
+        String sql = " DELETE FROM `t_coursedel` " +
+                " WHERE `coursedel_id` = ? ";
+        return update(sql, courseDelId);
+    }
+
+    @Override
+    public int updateCourseDel(CourseDel courseDel){
+        //language=sql
+        String sql = " UPDATE `t_coursedel` " +
+                " SET `course_name` = ?, `course_id` = ?, `start_time` = ? " +
+                " , `exp_time` = ?, `max_num` = ?, `coursedel_desc` = ? " +
+                " WHERE `coursedel_id` = ? ";
+        return update(sql, courseDel.getCourseName(), courseDel.getCourseId()
+                , courseDel.getStartTime(), courseDel.getExpTime(), courseDel.getMaxNum()
+                , courseDel.getCoursedelDesc(), courseDel.getCoursedelId());
+    }
+
 
 }

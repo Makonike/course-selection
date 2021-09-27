@@ -38,4 +38,8 @@ public interface CourseService {
 
     List<Integer> getAllCourseByStudentId(Integer studentId);
 
+    boolean deleteCourseDel(Integer courseDelId);
+
+    boolean updateCourseDel(CourseDel courseDel);
+
 }

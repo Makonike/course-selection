@@ -25,7 +25,7 @@ public class FilterExcludeUrl {
         userAllowUrl.add("/student/cancel");
         userAllowUrl.add("/student/course");
 
-        userAllowUrl.add("/course/getAll");
+        userAllowUrl.add("/course/del/getAll");
         userAllowUrl.add("/course/name");
         userAllowUrl.add("/course/check");
 
