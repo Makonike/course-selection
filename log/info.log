@@ -1,0 +1,10 @@
+2021-09-27 19:27:01  [ http-apr-8080-exec-9:62053 ] - [ INFO ]  用户【3120005180】登录成功！
+2021-09-27 19:27:04  [ http-apr-8080-exec-7:65186 ] - [ INFO ]  用户【3120005180】 退课【数据结构】成功！
+2021-09-27 19:27:08  [ http-apr-8080-exec-5:69726 ] - [ INFO ]  用户【3120005180】 选课【数据结构】成功！
+2021-09-27 19:27:48  [ localhost-startStop-2:109079 ] - [ INFO ]  {dataSource-com.zxd.www.util.dpool.datasource.PooledDataSource@2946e643} closing ...
+2021-09-27 19:31:18  [ http-apr-8080-exec-9:11047 ] - [ INFO ]  管理员【admin01】登录成功！
+2021-09-27 19:31:34  [ http-apr-8080-exec-2:27225 ] - [ INFO ]  管理员【admin01】登录失败，密码错误！
+2021-09-27 19:31:41  [ http-apr-8080-exec-1:33729 ] - [ INFO ]  管理员登录失败，管理员账号【adaa】不存在！
+2021-09-27 19:31:56  [ http-apr-8080-exec-5:48715 ] - [ INFO ]  登录失败，用户名【3120005180a】不存在！
+2021-09-27 19:32:01  [ http-apr-8080-exec-7:53730 ] - [ INFO ]  用户【3120005180】登录失败，密码错误！
+2021-09-27 19:32:11  [ localhost-startStop-2:64506 ] - [ INFO ]  {dataSource-com.zxd.www.util.dpool.datasource.PooledDataSource@2a015509} closing ...

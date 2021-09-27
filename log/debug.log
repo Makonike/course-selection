@@ -1,0 +1,72 @@
+2021-09-27 19:25:59  [ RMI TCP Connection(3)-127.0.0.1:0 ] - [ DEBUG ]  Test on idle config with seconds: 60
+2021-09-27 19:26:59  [ pool-1-thread-1:60007 ] - [ DEBUG ]  --- start check test on idle now ---
+2021-09-27 19:26:59  [ pool-1-thread-1:60011 ] - [ DEBUG ]  --- finish check test on idle ! ---
+2021-09-27 19:26:59  [ http-apr-8080-exec-9:60572 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:26:59  [ http-apr-8080-exec-9:60665 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:01  [ http-apr-8080-exec-9:62053 ] - [ INFO ]  用户【3120005180】登录成功！
+2021-09-27 19:27:02  [ http-apr-8080-exec-1:63052 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:02  [ http-apr-8080-exec-1:63054 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:02  [ http-apr-8080-exec-3:63072 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:02  [ http-apr-8080-exec-3:63073 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:02  [ http-apr-8080-exec-3:63073 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:02  [ http-apr-8080-exec-3:63075 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:02  [ http-apr-8080-exec-5:63095 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:02  [ http-apr-8080-exec-5:63098 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:04  [ http-apr-8080-exec-7:65162 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:04  [ http-apr-8080-exec-7:65163 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:04  [ http-apr-8080-exec-7:65164 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:04  [ http-apr-8080-exec-7:65166 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:04  [ http-apr-8080-exec-7:65172 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:04  [ http-apr-8080-exec-7:65177 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:04  [ http-apr-8080-exec-7:65177 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:04  [ http-apr-8080-exec-7:65181 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:04  [ http-apr-8080-exec-7:65182 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:04  [ http-apr-8080-exec-7:65185 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:04  [ http-apr-8080-exec-7:65186 ] - [ INFO ]  用户【3120005180】 退课【数据结构】成功！
+2021-09-27 19:27:05  [ http-apr-8080-exec-9:66661 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:05  [ http-apr-8080-exec-9:66662 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:05  [ http-apr-8080-exec-1:66729 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:05  [ http-apr-8080-exec-1:66730 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:05  [ http-apr-8080-exec-1:66730 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:05  [ http-apr-8080-exec-1:66731 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:05  [ http-apr-8080-exec-3:66744 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:05  [ http-apr-8080-exec-3:66746 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:08  [ http-apr-8080-exec-5:69714 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:08  [ http-apr-8080-exec-5:69715 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:08  [ http-apr-8080-exec-5:69715 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:08  [ http-apr-8080-exec-5:69717 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:08  [ http-apr-8080-exec-5:69717 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:08  [ http-apr-8080-exec-5:69720 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:08  [ http-apr-8080-exec-5:69720 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:08  [ http-apr-8080-exec-5:69723 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:08  [ http-apr-8080-exec-5:69723 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:08  [ http-apr-8080-exec-5:69725 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:08  [ http-apr-8080-exec-5:69726 ] - [ INFO ]  用户【3120005180】 选课【数据结构】成功！
+2021-09-27 19:27:09  [ http-apr-8080-exec-7:70691 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:09  [ http-apr-8080-exec-7:70693 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:10  [ http-apr-8080-exec-9:70783 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:10  [ http-apr-8080-exec-9:70784 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:10  [ http-apr-8080-exec-9:70785 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:10  [ http-apr-8080-exec-9:70786 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:10  [ http-apr-8080-exec-1:70824 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:27:10  [ http-apr-8080-exec-1:70826 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@fbc8d05 ---
+2021-09-27 19:27:48  [ localhost-startStop-2:109079 ] - [ INFO ]  {dataSource-com.zxd.www.util.dpool.datasource.PooledDataSource@2946e643} closing ...
+2021-09-27 19:31:07  [ RMI TCP Connection(3)-127.0.0.1:0 ] - [ DEBUG ]  Test on idle config with seconds: 60
+2021-09-27 19:31:16  [ http-apr-8080-exec-9:9512 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:31:16  [ http-apr-8080-exec-9:9609 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@3ced6583 ---
+2021-09-27 19:31:18  [ http-apr-8080-exec-9:11047 ] - [ INFO ]  管理员【admin01】登录成功！
+2021-09-27 19:31:34  [ http-apr-8080-exec-2:27224 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:31:34  [ http-apr-8080-exec-2:27225 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@3ced6583 ---
+2021-09-27 19:31:34  [ http-apr-8080-exec-2:27225 ] - [ INFO ]  管理员【admin01】登录失败，密码错误！
+2021-09-27 19:31:41  [ http-apr-8080-exec-1:33727 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:31:41  [ http-apr-8080-exec-1:33728 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@3ced6583 ---
+2021-09-27 19:31:41  [ http-apr-8080-exec-1:33729 ] - [ INFO ]  管理员登录失败，管理员账号【adaa】不存在！
+2021-09-27 19:31:56  [ http-apr-8080-exec-5:48714 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:31:56  [ http-apr-8080-exec-5:48715 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@3ced6583 ---
+2021-09-27 19:31:56  [ http-apr-8080-exec-5:48715 ] - [ INFO ]  登录失败，用户名【3120005180a】不存在！
+2021-09-27 19:32:01  [ http-apr-8080-exec-7:53728 ] - [ DEBUG ]  --- 从连接池获取连接 ---
+2021-09-27 19:32:01  [ http-apr-8080-exec-7:53730 ] - [ DEBUG ]  --- 归还连接: com.zxd.www.util.dpool.connection.PooledConnection@3ced6583 ---
+2021-09-27 19:32:01  [ http-apr-8080-exec-7:53730 ] - [ INFO ]  用户【3120005180】登录失败，密码错误！
+2021-09-27 19:32:07  [ pool-1-thread-1:60010 ] - [ DEBUG ]  --- start check test on idle now ---
+2021-09-27 19:32:07  [ pool-1-thread-1:60013 ] - [ DEBUG ]  --- finish check test on idle ! ---
+2021-09-27 19:32:11  [ localhost-startStop-2:64506 ] - [ INFO ]  {dataSource-com.zxd.www.util.dpool.datasource.PooledDataSource@2a015509} closing ...

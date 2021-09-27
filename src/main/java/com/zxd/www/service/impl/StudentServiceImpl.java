@@ -7,6 +7,8 @@ import com.zxd.www.util.ioc.annotation.Autowired;
 import com.zxd.www.util.ioc.annotation.Component;
 import com.zxd.www.po.Student;
 import com.zxd.www.service.StudentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -23,6 +25,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     CourseService courseService;
+
+    private static final Logger logger = LoggerFactory.getLogger("selectLog");
+
     /**
      * 插入学生信息
      * @param student student
@@ -121,7 +126,11 @@ public class StudentServiceImpl implements StudentService {
 
         // 使该选课信息已选人数+1
         boolean c = courseService.addCourseForCourseDel(courseDelId);
-        return a != 0 && c;
+        if(a != 0 && c){
+            logger.info("用户【" + student.getStudentNo() + "】 选课【" + courseDel.getCourseName() + "】成功！");
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -169,7 +178,12 @@ public class StudentServiceImpl implements StudentService {
         // 使该选课信息已选人数-1
         boolean c = courseService.cancelCourseForCourseDel(courseDelId);
 
-        return a != 0 && c;
+        if(a != 0 && c){
+            logger.info("用户【" + student.getStudentNo() + "】 退课【" + courseDel.getCourseName() + "】成功！");
+            return true;
+        }
+
+        return false;
     }
 
 

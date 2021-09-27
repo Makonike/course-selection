@@ -10,6 +10,8 @@ import com.zxd.www.util.mvc.annotation.Controller;
 import com.zxd.www.util.mvc.annotation.RequestMapping;
 import com.zxd.www.util.mvc.annotation.RequestParam;
 import com.zxd.www.util.mvc.constant.RequestMethodConstant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +26,8 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+    private static final Logger logger = LoggerFactory.getLogger("loginLog");
+
     /**
      * 添加管理员
      * @param adminName 账户
@@ -36,6 +40,7 @@ public class AdminController {
             return new JsonResponse().unauthorized().message("用户已存在！");
         }
         if(adminService.addAdmin(adminName, password)){
+            logger.info("添加管理员【" + adminName + "】成功！");
             return new JsonResponse();
         }
         return new JsonResponse().internalServerError().message("请求错误，请联系管理员修复！");
@@ -52,14 +57,17 @@ public class AdminController {
         Admin admin = adminService.getAdminByName(adminName);
 
         if(null == admin){
+            logger.info("管理员登录失败，管理员账号【" + adminName + "】不存在！");
             return new JsonResponse().notFound().message("用户名不存在！");
         }
         if(!StringUtils.validPassword(password, admin.getAdminPassword(), admin.getAdminSalt())){
+            logger.info("管理员【" + adminName + "】登录失败，密码错误！");
             return new JsonResponse().unauthorized().message("密码错误！");
         }
         Map<String, Object> result = new HashMap<>(1);
         String token = JwtUtils.generateAdminJwt(admin);
         result.put("token", token);
+        logger.info("管理员【" + adminName + "】登录成功！");
         return new JsonResponse().data(result);
     }
 
