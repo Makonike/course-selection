@@ -29,11 +29,11 @@ public class StudentDaoImpl extends BaseDao implements StudentDao {
         //language=sql
         String sql = " UPDATE `t_student` " +
                 " SET `student_no` = ?, `student_name` = ?, `student_sex` = ? " +
-                " , `student_class_id` = ?, `selected_course_count` = ? " +
+                " , `student_class_id` = ? " +
                 " WHERE `student_id` = ? " +
                 " AND `removed` = 0 ";
         return update(sql, student.getStudentNo(), student.getStudentName(), student.getStudentSex()
-        , student.getStudentClassId(), student.getSelectedCourseCount(), student.getStudentId());
+        , student.getStudentClassId(), student.getStudentId());
     }
 
     /**
