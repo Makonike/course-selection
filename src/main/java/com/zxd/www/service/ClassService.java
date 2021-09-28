@@ -13,11 +13,11 @@ import java.util.List;
  **/
 public interface ClassService {
 
-    int addClass(Class clazz);
+    boolean addClass(Class clazz);
 
-    int updateClass(Class clazz);
+    boolean updateClass(Class clazz);
 
-    int deleteClass(Integer classId);
+    boolean deleteClass(Integer classId);
 
     Class getById(Integer classId);
 

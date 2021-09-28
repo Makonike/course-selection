@@ -118,6 +118,10 @@ public class CourseController {
         return new JsonResponse().data(courseService.getCourseDelById(courseDelId));
     }
 
+    /**
+     * 更新选课信息
+     * @param courseDel 选课id
+     */
     @RequestMapping(path = "/course/del/update", method = RequestMethodConstant.PUT)
     public JsonResponse updateCourseDel(@RequestBody("courseDel")CourseDel courseDel){
         if(courseService.updateCourseDel(courseDel)){
@@ -125,4 +129,14 @@ public class CourseController {
         }
         return new JsonResponse().badRequest().message("更新选课信息失败");
     }
+
+    @RequestMapping(path = "/course/del/add", method = RequestMethodConstant.POST)
+    public JsonResponse addCourseDel(@RequestBody("courseDel") CourseDel courseDel){
+        System.out.println(courseDel);
+        if(courseService.addCourseDel(courseDel)){
+            return new JsonResponse();
+        }
+        return new JsonResponse().badRequest().message("新增选课信息失败");
+    }
+
 }

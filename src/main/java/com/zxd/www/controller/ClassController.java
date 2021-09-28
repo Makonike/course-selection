@@ -1,11 +1,14 @@
 package com.zxd.www.controller;
 
 import com.zxd.www.global.dto.JsonResponse;
+import com.zxd.www.po.Class;
 import com.zxd.www.service.ClassService;
 import com.zxd.www.util.ioc.annotation.Autowired;
 import com.zxd.www.util.mvc.annotation.Controller;
+import com.zxd.www.util.mvc.annotation.RequestBody;
 import com.zxd.www.util.mvc.annotation.RequestMapping;
 import com.zxd.www.util.mvc.annotation.RequestParam;
+import com.zxd.www.util.mvc.constant.RequestMethodConstant;
 
 /**
  * @author Makonike
@@ -33,6 +36,11 @@ public class ClassController {
         return new JsonResponse().data(classService.getAllGrade());
     }
 
+    @RequestMapping(path = "/class/all")
+    public JsonResponse getClassList(){
+        return new JsonResponse().data(classService.getAll());
+    }
+
     /**
      * 获取所有年级信息
      */
@@ -45,5 +53,31 @@ public class ClassController {
     public JsonResponse getClassByClassId(@RequestParam("classId") Integer classId){
         return new JsonResponse().data(classService.getById(classId));
     }
+
+    @RequestMapping(path = "/class/cls/delete", method = RequestMethodConstant.DELETE)
+    public JsonResponse deleteClassById(@RequestParam("classId") Integer classId){
+        if(classService.deleteClass(classId)){
+            return new JsonResponse();
+        }
+        return new JsonResponse().badRequest().message("删除班级信息失败！");
+    }
+
+    @RequestMapping(path = "/class/cls/update", method = RequestMethodConstant.PUT)
+    public JsonResponse updateById(@RequestBody("class")Class clazz){
+        if(classService.updateClass(clazz)){
+            return new JsonResponse();
+        }
+        return new JsonResponse().badRequest().message("更新班级信息失败!");
+    }
+
+    @RequestMapping(path = "/class/cls/add", method = RequestMethodConstant.POST)
+    public JsonResponse addClass(@RequestBody("class") Class clazz){
+        if(classService.addClass(clazz)){
+            return new JsonResponse();
+        }
+        return new JsonResponse().badRequest().message("添加班级信息失败！");
+    }
+
+
 
 }

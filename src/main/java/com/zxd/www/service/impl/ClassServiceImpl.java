@@ -22,18 +22,18 @@ public class ClassServiceImpl implements ClassService {
     ClassDao classDao;
 
     @Override
-    public int addClass(Class clazz) {
-        return classDao.insertClass(clazz);
+    public boolean addClass(Class clazz) {
+        return classDao.insertClass(clazz) != 0;
     }
 
     @Override
-    public int updateClass(Class clazz) {
-        return classDao.updateClass(clazz);
+    public boolean updateClass(Class clazz) {
+        return classDao.updateClass(clazz) != 0;
     }
 
     @Override
-    public int deleteClass(Integer classId) {
-        return classDao.deleteClass(classId);
+    public boolean deleteClass(Integer classId) {
+        return classDao.deleteClass(classId) != 0;
     }
 
     @Override

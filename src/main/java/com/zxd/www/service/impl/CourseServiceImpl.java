@@ -67,7 +67,7 @@ public class CourseServiceImpl implements CourseService {
         boolean isExp = courseDel.getExpTime().compareTo(LocalDateTime.now()) < 0;
         // 已满员 - true
         boolean isMaxNum = courseDel.getNowNum() >= courseDel.getMaxNum();
-        System.out.println(isStart);
+
         if(isStart && !isExp && !isMaxNum){
             return true;
         }
@@ -121,4 +121,15 @@ public class CourseServiceImpl implements CourseService {
     public boolean updateCourseDel(CourseDel courseDel) {
         return courseDao.updateCourseDel(courseDel) != 0;
     }
+
+    @Override
+    public boolean addCourseDel(CourseDel courseDel) {
+
+        // 选课截至时间小于开始选课时间，直接返回false选课失败
+        if(courseDel.getStartTime().compareTo(courseDel.getExpTime()) > 0){
+            return false;
+        }
+        return courseDao.addCourseDel(courseDel) != 0;
+    }
+
 }

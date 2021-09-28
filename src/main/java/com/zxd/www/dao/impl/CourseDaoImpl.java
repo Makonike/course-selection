@@ -172,5 +172,17 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
                 , courseDel.getCoursedelDesc(), courseDel.getCoursedelId());
     }
 
+    @Override
+    public int addCourseDel(CourseDel courseDel) {
+        //language=sql
+        String sql = " INSERT INTO `t_coursedel` " +
+                " (`course_name`, `course_id`, `start_time`, `exp_time`" +
+                " , `max_num`, `coursedel_desc` ) " +
+                " VALUES (?, ?, ?, ?, ?, ?) ";
+        return update(sql, courseDel.getCourseName(), courseDel.getCourseId()
+                , courseDel.getStartTime(), courseDel.getExpTime(), courseDel.getMaxNum()
+                , courseDel.getCoursedelDesc());
+    }
+
 
 }

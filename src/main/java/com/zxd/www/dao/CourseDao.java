@@ -40,4 +40,6 @@ public interface CourseDao {
 
     int updateCourseDel(CourseDel courseDel);
 
+    int addCourseDel(CourseDel courseDel);
+
 }

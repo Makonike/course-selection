@@ -42,4 +42,6 @@ public interface CourseService {
 
     boolean updateCourseDel(CourseDel courseDel);
 
+    boolean addCourseDel(CourseDel courseDel);
+
 }
