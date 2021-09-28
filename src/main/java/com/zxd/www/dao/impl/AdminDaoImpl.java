@@ -56,7 +56,7 @@ public class AdminDaoImpl extends BaseDao implements AdminDao {
     @Override
     public List<Admin> getAdminList() {
         //language=sql
-        String sql = " SELECT `admin_id`, `admin_name`, `admin_salt`, `admin_password`, `create_time` " +
+        String sql = " SELECT `admin_id`, `admin_name`, `create_time` " +
                 " FROM `t_admin` " +
                 " WHERE `removed` = 0 " +
                 " ORDER BY `create_time` ASC ";

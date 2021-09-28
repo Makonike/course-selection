@@ -148,4 +148,12 @@ public class StudentController {
         return new JsonResponse().data(courseService.getAllCourseByStudentId(student.getStudentId()));
     }
 
+    @RequestMapping(path = "/student/del", method = RequestMethodConstant.DELETE)
+    public JsonResponse deleteStudent(@RequestParam("studentId") Integer studentId){
+        if(studentService.deleteStudent(studentId)){
+            return new JsonResponse();
+        }
+        return new JsonResponse().notFound().message("删除学生信息失败！");
+    }
+
 }

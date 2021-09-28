@@ -71,4 +71,18 @@ public class AdminController {
         return new JsonResponse().data(result);
     }
 
+    @RequestMapping(path = "/admin/all")
+    public JsonResponse getAll(){
+        return new JsonResponse().data(adminService.getAdminList());
+    }
+
+    @RequestMapping(path = "/admin/del", method = RequestMethodConstant.DELETE)
+    public JsonResponse deleteAdminById(@RequestParam("adminId") Integer adminId){
+        if(adminService.deleteAdmin(adminId)){
+            return new JsonResponse();
+        }
+        return new JsonResponse().notFound().message("删除管理员失败！");
+    }
+
+
 }
