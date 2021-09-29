@@ -1,0 +1,4 @@
+[INFO ] 2021-09-27 19:27:04,432 method:com.zxd.www.service.impl.StudentServiceImpl.cancelCourse(StudentServiceImpl.java:182)
+用户【3120005180】 退课【数据结构】成功！
+[INFO ] 2021-09-27 19:27:08,972 method:com.zxd.www.service.impl.StudentServiceImpl.addCourse(StudentServiceImpl.java:130)
+用户【3120005180】 选课【数据结构】成功！
