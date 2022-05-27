@@ -27,7 +27,7 @@ public class PooledDataSource extends AbstractPooledDataSourceConfig{
 
     private static volatile PooledDataSource instance = null;
 
-    final static Logger logger = LoggerFactory.getLogger(PooledConnection.class);
+    final static Logger logger = LoggerFactory.getLogger("databaseLog");
 
     private ScheduledExecutorService executor = null;
     private List<IPooledConnection> pool = null;

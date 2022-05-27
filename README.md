@@ -14,6 +14,7 @@ course-selection : a demo of JavaEE
 - 学院、年级的增删改查
 - 用户找回密码
 - 统一的异常管理机制
+- 管理员不能删除自己
 
 
 # DONE:
