@@ -116,7 +116,7 @@ public class StudentController {
         if(b){
             return new JsonResponse();
         }
-        return new JsonResponse().notFound().message("人数已满，选课失败！");
+        return new JsonResponse().notFound().message("选课失败！");
     }
 
     /**

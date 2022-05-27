@@ -42,7 +42,7 @@ public class ClassController {
     }
 
     /**
-     * 获取所有年级信息
+     * 获取指定年级和学院下的班级
      */
     @RequestMapping(path = "/class/cls/all")
     public JsonResponse getClasses(@RequestParam("instituteId")Integer instituteId, @RequestParam("gradeId") Integer gradeId){
